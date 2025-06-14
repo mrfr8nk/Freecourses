@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,11 +6,10 @@
     <title>ONLINE COURSES FREE | Premium Learning Platform</title>
     
     <!-- Favicons -->
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/1f4da.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/1f4da.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/1f4da.png">
     <link rel="manifest" href="/site.webmanifest">
-    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
     <meta name="msapplication-TileColor" content="#2b5797">
     <meta name="theme-color" content="#ffffff">
     
@@ -223,6 +221,87 @@
             0% { background-position: 200% 0; }
             100% { background-position: -200% 0; }
         }
+        
+        .toast {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            padding: 12px 24px;
+            border-radius: 8px;
+            color: white;
+            z-index: 1000;
+            animation: slideUp 0.3s ease-out;
+        }
+        
+        .toast.success {
+            background-color: #10b981;
+        }
+        
+        .toast.error {
+            background-color: #ef4444;
+        }
+        
+        .toast.warning {
+            background-color: #f59e0b;
+        }
+        
+        .premium-badge {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background: linear-gradient(90deg, #ec4899 0%, #7c3aed 50%, #0ea5e9 100%);
+            color: white;
+            font-size: 12px;
+            padding: 4px 8px;
+            border-radius: 20px;
+            font-weight: bold;
+        }
+        
+        .free-badge {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background: #10b981;
+            color: white;
+            font-size: 12px;
+            padding: 4px 8px;
+            border-radius: 20px;
+            font-weight: bold;
+        }
+
+        /* Admin Panel Specific Styles */
+        .admin-tab-content {
+            display: none;
+        }
+
+        .admin-tab-content.active {
+            display: block;
+        }
+
+        .admin-panel {
+            max-height: calc(100vh - 100px);
+            overflow-y: auto;
+        }
+
+        .status-badge {
+            @apply px-2 py-1 text-xs rounded-full;
+        }
+
+        .status-pending {
+            @apply bg-yellow-100 text-yellow-800;
+        }
+
+        .status-verified {
+            @apply bg-green-100 text-green-800;
+        }
+
+        .status-expired {
+            @apply bg-red-100 text-red-800;
+        }
+
+        .status-rejected {
+            @apply bg-gray-100 text-gray-800;
+        }
     </style>
 </head>
 <body class="min-h-screen flex flex-col">
@@ -239,6 +318,7 @@
             <nav class="hidden md:flex items-center space-x-8">
                 <a href="#home" class="nav-link active text-gray-700 font-medium">Home</a>
                 <a href="#courses" class="nav-link text-gray-700 font-medium">Courses</a>
+                <a href="#business" class="nav-link text-gray-700 font-medium">Business Ideas</a>
                 <a href="#pricing" class="nav-link text-gray-700 font-medium">Pricing</a>
                 <a href="#live" class="nav-link text-gray-700 font-medium">Live Sessions</a>
                 <a href="#contact" class="nav-link text-gray-700 font-medium">Contact</a>
@@ -262,6 +342,7 @@
             <div class="flex flex-col space-y-4">
                 <a href="#home" class="nav-link active text-gray-700 font-medium">Home</a>
                 <a href="#courses" class="nav-link text-gray-700 font-medium">Courses</a>
+                <a href="#business" class="nav-link text-gray-700 font-medium">Business Ideas</a>
                 <a href="#pricing" class="nav-link text-gray-700 font-medium">Pricing</a>
                 <a href="#live" class="nav-link text-gray-700 font-medium">Live Sessions</a>
                 <a href="#contact" class="nav-link text-gray-700 font-medium">Contact</a>
@@ -282,7 +363,7 @@
                         Learn <span class="gradient-text">Premium Courses</span> For Free
                     </h1>
                     <p class="text-lg text-gray-600 mb-8">
-                        Access high-quality courses from industry experts. Subscribe once and get lifetime access to all current and future courses.
+                        Start with free courses and unlock premium content with affordable subscription. Get 3 months access to all courses for just 150 PKR.
                     </p>
                     <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
                         <button id="heroSubscribeBtn" class="btn-primary px-8 py-4 text-lg">
@@ -383,19 +464,125 @@
         </div>
     </section>
 
+    <!-- Free vs Premium Section -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Free vs Premium Access</h2>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">Start with free content and unlock premium features with subscription</p>
+            </div>
+            
+            <div class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="card p-8 text-center border-2 border-green-200">
+                    <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center text-green-600 text-2xl mx-auto mb-6">
+                        <i class="fas fa-unlock"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-4">Free Access</h3>
+                    <ul class="space-y-3 text-left mb-6">
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-green-500 mr-2 mt-1"></i>
+                            <span>Access to 10+ beginner courses</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-green-500 mr-2 mt-1"></i>
+                            <span>Limited course materials</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-green-500 mr-2 mt-1"></i>
+                            <span>Watch first lesson of premium courses</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-green-500 mr-2 mt-1"></i>
+                            <span>Join free live sessions</span>
+                        </li>
+                    </ul>
+                    <button class="px-6 py-3 border border-green-500 text-green-600 rounded-full font-medium hover:bg-green-50 transition-colors w-full">
+                        Start Learning Free
+                    </button>
+                </div>
+                
+                <div class="card p-8 text-center border-2 border-primary-500 relative">
+                    <div class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center text-white text-2xl mx-auto mb-6">
+                        <i class="fas fa-crown"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-4">Premium Access</h3>
+                    <ul class="space-y-3 text-left mb-6">
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-primary-500 mr-2 mt-1"></i>
+                            <span>Unlock all 100+ premium courses</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-primary-500 mr-2 mt-1"></i>
+                            <span>Downloadable resources & certificates</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-primary-500 mr-2 mt-1"></i>
+                            <span>Priority access to live sessions</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-primary-500 mr-2 mt-1"></i>
+                            <span>Business ideas & startup resources</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-primary-500 mr-2 mt-1"></i>
+                            <span>24/7 support</span>
+                        </li>
+                    </ul>
+                    <button class="btn-primary w-full py-3">
+                        Get Premium for 150 PKR
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Popular Courses Section -->
-    <section id="courses" class="py-16 bg-white">
+    <section id="courses" class="py-16 bg-gray-50">
         <div class="container mx-auto px-4">
             <div class="text-center mb-16">
                 <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Popular Courses</h2>
-                <p class="text-lg text-gray-600 max-w-2xl mx-auto">Browse our most popular courses. More added every week!</p>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">Browse our most popular free and premium courses</p>
             </div>
             
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="coursesContainer">
-                <!-- Courses will be loaded here dynamically -->
-                <div class="skeleton h-96 rounded-xl"></div>
-                <div class="skeleton h-96 rounded-xl"></div>
-                <div class="skeleton h-96 rounded-xl"></div>
+                <!-- Free Course Example -->
+                <div class="course-card animate-fade-in relative">
+                    <span class="free-badge">FREE</span>
+                    <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Web Development Basics" class="course-image">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Web Development Basics</h3>
+                        <p class="text-gray-600 mb-4">Learn HTML, CSS and JavaScript fundamentals in this beginner-friendly course.</p>
+                        <a href="#" class="text-primary-600 font-medium hover:text-primary-800 transition-colors inline-flex items-center">
+                            Start Course <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Free Course Example -->
+                <div class="course-card animate-fade-in relative">
+                    <span class="free-badge">FREE</span>
+                    <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Digital Marketing" class="course-image">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Digital Marketing Fundamentals</h3>
+                        <p class="text-gray-600 mb-4">Introduction to SEO, social media marketing and content creation.</p>
+                        <a href="#" class="text-primary-600 font-medium hover:text-primary-800 transition-colors inline-flex items-center">
+                            Start Course <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Premium Course Example -->
+                <div class="course-card animate-fade-in relative">
+                    <span class="premium-badge">PREMIUM</span>
+                    <img src="https://images.unsplash.com/photo-1547658719-da2b51169166?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Advanced JavaScript" class="course-image">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Advanced JavaScript Concepts</h3>
+                        <p class="text-gray-600 mb-4">Master closures, promises, async/await and modern JS patterns.</p>
+                        <a href="#" class="text-primary-600 font-medium hover:text-primary-800 transition-colors inline-flex items-center">
+                            Unlock Course <i class="fas fa-lock ml-2"></i>
+                        </a>
+                    </div>
+                </div>
             </div>
             
             <div class="text-center mt-12">
@@ -406,28 +593,85 @@
         </div>
     </section>
 
+    <!-- Business Ideas Section -->
+    <section id="business" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Business Ideas & Startups</h2>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">Exclusive business ideas and startup resources for premium members</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="course-card relative">
+                    <span class="premium-badge">PREMIUM</span>
+                    <img src="https://images.unsplash.com/photo-1556740738-b6a63e27c4df?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="E-commerce Business" class="course-image">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">E-commerce Business Blueprint</h3>
+                        <p class="text-gray-600 mb-4">Step-by-step guide to start your own dropshipping or print-on-demand business.</p>
+                        <a href="#" class="text-primary-600 font-medium hover:text-primary-800 transition-colors inline-flex items-center">
+                            Unlock Content <i class="fas fa-lock ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="course-card relative">
+                    <span class="premium-badge">PREMIUM</span>
+                    <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Freelancing" class="course-image">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Freelancing Masterclass</h3>
+                        <p class="text-gray-600 mb-4">How to make $1000+/month freelancing with skills you already have.</p>
+                        <a href="#" class="text-primary-600 font-medium hover:text-primary-800 transition-colors inline-flex items-center">
+                            Unlock Content <i class="fas fa-lock ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="course-card relative">
+                    <span class="premium-badge">PREMIUM</span>
+                    <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="YouTube Business" class="course-image">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">YouTube Business System</h3>
+                        <p class="text-gray-600 mb-4">Build a profitable YouTube channel from scratch with our proven system.</p>
+                        <a href="#" class="text-primary-600 font-medium hover:text-primary-800 transition-colors inline-flex items-center">
+                            Unlock Content <i class="fas fa-lock ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12">
+                <button id="viewAllBusinessBtn" class="btn-primary px-8 py-3">
+                    Unlock All Business Ideas (150 PKR)
+                </button>
+            </div>
+        </div>
+    </section>
+
     <!-- Pricing Section -->
     <section id="pricing" class="py-16 bg-gray-50">
         <div class="container mx-auto px-4">
             <div class="text-center mb-16">
                 <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Simple, Affordable Pricing</h2>
-                <p class="text-lg text-gray-600 max-w-2xl mx-auto">One-time payment for lifetime access to all current and future courses</p>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">One payment for 3 months access to all premium courses and features</p>
             </div>
             
             <div class="max-w-4xl mx-auto bg-white rounded-2xl shadow-lg overflow-hidden">
                 <div class="md:flex">
                     <div class="md:w-1/2 gradient-bg p-8 md:p-12 text-white">
                         <h3 class="text-2xl font-bold mb-4">Premium Membership</h3>
-                        <p class="mb-6">Get unlimited access to all courses and features with a one-time payment.</p>
+                        <p class="mb-6">Get unlimited access to all courses, business ideas and features for 3 months.</p>
                         
                         <div class="mb-8">
                             <span class="text-5xl font-bold">150 PKR</span>
-                            <span class="text-xl">/ lifetime</span>
+                            <span class="text-xl">/ 3 months</span>
                         </div>
                         
                         <ul class="space-y-3 mb-8">
                             <li class="flex items-center">
                                 <i class="fas fa-check-circle mr-2"></i> 100+ Premium Courses
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle mr-2"></i> Business Ideas & Resources
                             </li>
                             <li class="flex items-center">
                                 <i class="fas fa-check-circle mr-2"></i> Weekly Live Sessions
@@ -448,7 +692,7 @@
                         <h3 class="text-2xl font-bold text-gray-900 mb-6">Payment Methods</h3>
                         
                         <div class="space-y-4 mb-8">
-                            <div class="payment-method border rounded-lg p-4 cursor-pointer active">
+                            <div class="payment-method border rounded-lg p-4 cursor-pointer active" data-method="sadapay">
                                 <div class="flex items-center">
                                     <div class="w-12 h-12 bg-blue-50 rounded-lg flex items-center justify-center mr-4">
                                         <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/SadaPay_logo.svg/1200px-SadaPay_logo.svg.png" alt="SadaPay" class="h-6">
@@ -460,689 +704,1779 @@
                                 </div>
                             </div>
                             
-                            <div class="payment-method border rounded-lg p-4 cursor-pointer">
+                            <div class="payment-method border rounded-lg p-4 cursor-pointer" data-method="binance">
                                 <div class="flex items-center">
-                                    <div class="w-12 h-12 bg-yellow-50 rounded-lg flex items-center justify-center mr-4">
-                                        <img src="https://cryptologos.cc/logos/bnb-bnb-logo.png" alt="Binance" class="h-6">
-                                    </div>
-                                    <div>
-                                        <h4 class="font-semibold text-gray-900">Binance</h4>
-                                        <p class="text-sm text-gray-600">ID: 907674656 (MSARIM21)</p>
-                                    </div>
+                                                                    <div class="w-12 h-12 bg-yellow-50 rounded-lg flex items-center justify-center mr-4">
+                                    <img src="https://cryptologos.cc/logos/bnb-bnb-logo.png" alt="Binance" class="h-6">
                                 </div>
-                            </div>
-                        </div>
-                        
-                        <button id="pricingSubscribeBtn" class="btn-primary w-full py-4 text-lg">
-                            Subscribe Now
-                        </button>
-                        
-                        <p class="text-sm text-gray-500 mt-4 text-center">
-                            After payment, submit your details for verification
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Live Sessions Section -->
-    <section id="live" class="py-16 bg-white">
-        <div class="container mx-auto px-4">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Live Sessions</h2>
-                <p class="text-lg text-gray-600 max-w-2xl mx-auto">Join our live interactive sessions with industry experts</p>
-            </div>
-            
-            <div class="max-w-4xl mx-auto bg-gray-900 rounded-2xl overflow-hidden shadow-xl">
-                <div class="md:flex">
-                    <div class="md:w-2/3 bg-black">
-                        <div class="aspect-w-16 aspect-h-9">
-                            <div id="liveVideoPlaceholder" class="w-full h-full flex items-center justify-center bg-gray-800 text-white">
-                                <div class="text-center p-8">
-                                    <div class="w-16 h-16 bg-red-500 rounded-full flex items-center justify-center mx-auto mb-4">
-                                        <i class="fas fa-play text-2xl"></i>
-                                    </div>
-                                    <h3 class="text-xl font-bold mb-2">Live Session Not Currently Active</h3>
-                                    <p class="text-gray-400 mb-4">Our next live session will start soon</p>
-                                    <button id="visitChannelBtn" class="px-6 py-2 bg-red-600 text-white rounded-full font-medium hover:bg-red-700 transition-colors">
-                                        Visit YouTube Channel
-                                    </button>
+                                <div>
+                                    <h4 class="font-semibold text-gray-900">Binance</h4>
+                                    <p class="text-sm text-gray-600">ID: 907674656 (MSARIM21)</p>
                                 </div>
                             </div>
                         </div>
                     </div>
                     
-                    <div class="md:w-1/3 p-6 bg-gray-900 text-white">
-                        <h3 class="text-xl font-bold mb-4">Upcoming Sessions</h3>
-                        
-                        <div class="space-y-4 mb-6">
-                            <div class="bg-gray-800 p-4 rounded-lg">
-                                <div class="flex items-start">
-                                    <div class="bg-primary-500 text-white text-xs font-bold px-2 py-1 rounded mr-3">LIVE</div>
-                                    <div>
-                                        <h4 class="font-semibold">Web Development Workshop</h4>
-                                        <p class="text-sm text-gray-400">Today, 8:00 PM (PKT)</p>
-                                    </div>
+                    <button id="pricingSubscribeBtn" class="btn-primary w-full py-4 text-lg">
+                        Subscribe Now
+                    </button>
+                    
+                    <p class="text-sm text-gray-500 mt-4 text-center">
+                        After payment, submit your details for verification
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Live Sessions Section -->
+<section id="live" class="py-16 bg-white">
+    <div class="container mx-auto px-4">
+        <div class="text-center mb-16">
+            <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Live Sessions</h2>
+            <p class="text-lg text-gray-600 max-w-2xl mx-auto">Join our live interactive sessions with industry experts</p>
+        </div>
+        
+        <div class="max-w-4xl mx-auto bg-gray-900 rounded-2xl overflow-hidden shadow-xl">
+            <div class="md:flex">
+                <div class="md:w-2/3 bg-black">
+                    <div class="aspect-w-16 aspect-h-9">
+                        <div id="liveVideoPlaceholder" class="w-full h-full flex items-center justify-center bg-gray-800 text-white">
+                            <div class="text-center p-8">
+                                <div class="w-16 h-16 bg-red-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                                    <i class="fas fa-play text-2xl"></i>
                                 </div>
-                            </div>
-                            
-                            <div class="bg-gray-800 p-4 rounded-lg">
-                                <div class="flex items-start">
-                                    <div class="bg-gray-600 text-white text-xs font-bold px-2 py-1 rounded mr-3">UPCOMING</div>
-                                    <div>
-                                        <h4 class="font-semibold">Python for Beginners</h4>
-                                        <p class="text-sm text-gray-400">Tomorrow, 6:00 PM (PKT)</p>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <div class="bg-gray-800 p-4 rounded-lg">
-                                <div class="flex items-start">
-                                    <div class="bg-gray-600 text-white text-xs font-bold px-2 py-1 rounded mr-3">UPCOMING</div>
-                                    <div>
-                                        <h4 class="font-semibold">Freelancing Guide</h4>
-                                        <p class="text-sm text-gray-400">Friday, 7:00 PM (PKT)</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="bg-gray-800 p-4 rounded-lg">
-                            <h4 class="font-semibold mb-2">Get Notified</h4>
-                            <p class="text-sm text-gray-400 mb-3">Subscribe to get notified when we go live</p>
-                            <div class="flex">
-                                <input type="email" placeholder="Your email" class="flex-grow px-4 py-2 bg-gray-700 text-white rounded-l-lg focus:outline-none focus:ring-2 focus:ring-primary-500">
-                                <button class="bg-primary-500 hover:bg-primary-600 px-4 py-2 rounded-r-lg text-white font-medium">
-                                    <i class="fas fa-bell"></i>
+                                <h3 class="text-xl font-bold mb-2">Live Session Not Currently Active</h3>
+                                <p class="text-gray-400 mb-4">Our next live session will start soon</p>
+                                <button id="visitChannelBtn" class="px-6 py-2 bg-red-600 text-white rounded-full font-medium hover:bg-red-700 transition-colors">
+                                    Visit YouTube Channel
                                 </button>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Testimonials Section -->
-    <section class="py-16 bg-gray-50">
-        <div class="container mx-auto px-4">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">What Our Students Say</h2>
-                <p class="text-lg text-gray-600 max-w-2xl mx-auto">Don't just take our word for it - hear from our community</p>
-            </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="card p-6">
-                    <div class="flex items-center mb-4">
-                        <img src="https://randomuser.me/api/portraits/women/32.jpg" alt="Student" class="w-12 h-12 rounded-full mr-4">
-                        <div>
-                            <h4 class="font-semibold">Aisha Khan</h4>
-                            <div class="flex text-yellow-400 text-sm">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                            </div>
-                        </div>
-                    </div>
-                    <p class="text-gray-600">"The courses are incredibly well-structured and easy to follow. I've learned so much in just a few weeks!"</p>
-                </div>
                 
-                <div class="card p-6">
-                    <div class="flex items-center mb-4">
-                        <img src="https://randomuser.me/api/portraits/men/45.jpg" alt="Student" class="w-12 h-12 rounded-full mr-4">
-                        <div>
-                            <h4 class="font-semibold">Ahmed Raza</h4>
-                            <div class="flex text-yellow-400 text-sm">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                            </div>
-                        </div>
-                    </div>
-                    <p class="text-gray-600">"The live sessions are amazing. Being able to ask questions directly to the instructor is invaluable."</p>
-                </div>
-                
-                <div class="card p-6">
-                    <div class="flex items-center mb-4">
-                        <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Student" class="w-12 h-12 rounded-full mr-4">
-                        <div>
-                            <h4 class="font-semibold">Fatima Ali</h4>
-                            <div class="flex text-yellow-400 text-sm">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star-half-alt"></i>
-                            </div>
-                        </div>
-                    </div>
-                    <p class="text-gray-600">"For the price, the quality of content is unbelievable. I've recommended it to all my friends!"</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- CTA Section -->
-    <section class="py-16 gradient-bg">
-        <div class="container mx-auto px-4 text-center">
-            <h2 class="text-3xl md:text-4xl font-bold text-white mb-6">Ready to Start Learning?</h2>
-            <p class="text-xl text-white opacity-90 mb-8 max-w-2xl mx-auto">Join thousands of students who are advancing their careers with our courses.</p>
-            <button id="finalSubscribeBtn" class="bg-white text-primary-600 hover:bg-gray-100 px-10 py-4 rounded-full text-lg font-semibold shadow-lg transition-colors">
-                Get Lifetime Access for 150 PKR
-            </button>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="py-16 bg-white">
-        <div class="container mx-auto px-4">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Have Questions?</h2>
-                <p class="text-lg text-gray-600 max-w-2xl mx-auto">Contact us directly for any inquiries or support</p>
-            </div>
-            
-            <div class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div class="card p-8">
-                    <h3 class="text-xl font-bold text-gray-900 mb-6">Contact Information</h3>
+                <div class="md:w-1/3 p-6 bg-gray-900 text-white">
+                    <h3 class="text-xl font-bold mb-4">Upcoming Sessions</h3>
                     
-                    <div class="space-y-6">
-                        <div class="flex items-start">
-                            <div class="w-10 h-10 bg-primary-100 rounded-full flex items-center justify-center text-primary-600 mr-4">
-                                <i class="fas fa-phone-alt"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-semibold text-gray-900">Phone / WhatsApp</h4>
-                                <p class="text-gray-600">+92 332 6942269</p>
-                                <p class="text-sm text-gray-500">(GAME CHANGER)</p>
-                            </div>
-                        </div>
-                        
-                        <div class="flex items-start">
-                            <div class="w-10 h-10 bg-primary-100 rounded-full flex items-center justify-center text-primary-600 mr-4">
-                                <i class="fas fa-envelope"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-semibold text-gray-900">Email</h4>
-                                <p class="text-gray-600">support@onlinecoursesfree.com</p>
-                            </div>
-                        </div>
-                        
-                        <div class="flex items-start">
-                            <div class="w-10 h-10 bg-primary-100 rounded-full flex items-center justify-center text-primary-600 mr-4">
-                                <i class="fab fa-youtube"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-semibold text-gray-900">YouTube Channel</h4>
-                                <p class="text-gray-600">youtube.com/@msarim2122</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="card p-8">
-                    <h3 class="text-xl font-bold text-gray-900 mb-6">Send Us a Message</h3>
-                    
-                    <form id="contactForm" class="space-y-4">
-                        <div>
-                            <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Your Name</label>
-                            <input type="text" id="name" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500">
-                        </div>
-                        
-                        <div>
-                            <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
-                            <input type="email" id="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500">
-                        </div>
-                        
-                        <div>
-                            <label for="message" class="block text-sm font-medium text-gray-700 mb-1">Message</label>
-                            <textarea id="message" rows="4" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500"></textarea>
-                        </div>
-                        
-                                                    <button type="submit" class="btn-primary w-full py-3">
-                                Send Message <i class="fas fa-paper-plane ml-2"></i>
-                            </button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Footer -->
-        <footer class="bg-darker text-white py-12">
-            <div class="container mx-auto px-4">
-                <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
-                    <div>
-                        <div class="flex items-center space-x-2 mb-4">
-                            <div class="w-10 h-10 rounded-full gradient-bg flex items-center justify-center text-white font-bold">
-                                OCF
-                            </div>
-                            <h3 class="text-xl font-bold">ONLINE COURSES FREE</h3>
-                        </div>
-                        <p class="text-gray-400">Premium online learning platform providing free access to quality education.</p>
-                    </div>
-                    
-                    <div>
-                        <h4 class="text-lg font-semibold mb-4">Quick Links</h4>
-                        <ul class="space-y-2">
-                            <li><a href="#home" class="text-gray-400 hover:text-white transition-colors">Home</a></li>
-                            <li><a href="#courses" class="text-gray-400 hover:text-white transition-colors">Courses</a></li>
-                            <li><a href="#pricing" class="text-gray-400 hover:text-white transition-colors">Pricing</a></li>
-                            <li><a href="#live" class="text-gray-400 hover:text-white transition-colors">Live Sessions</a></li>
-                        </ul>
-                    </div>
-                    
-                    <div>
-                        <h4 class="text-lg font-semibold mb-4">Support</h4>
-                        <ul class="space-y-2">
-                            <li><a href="#" class="text-gray-400 hover:text-white transition-colors">FAQs</a></li>
-                            <li><a href="#contact" class="text-gray-400 hover:text-white transition-colors">Contact Us</a></li>
-                            <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Privacy Policy</a></li>
-                            <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Terms of Service</a></li>
-                        </ul>
-                    </div>
-                    
-                    <div>
-                        <h4 class="text-lg font-semibold mb-4">Connect With Us</h4>
-                        <div class="flex space-x-4 mb-4">
-                            <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center text-white hover:bg-primary-500 transition-colors">
-                                <i class="fab fa-facebook-f"></i>
-                            </a>
-                            <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center text-white hover:bg-primary-500 transition-colors">
-                                <i class="fab fa-twitter"></i>
-                            </a>
-                            <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center text-white hover:bg-primary-500 transition-colors">
-                                <i class="fab fa-instagram"></i>
-                            </a>
-                            <a href="https://youtube.com/@msarim2122" target="_blank" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center text-white hover:bg-primary-500 transition-colors">
-                                <i class="fab fa-youtube"></i>
-                            </a>
-                        </div>
-                        <p class="text-gray-400 text-sm">Subscribe to our newsletter for updates</p>
-                    </div>
-                </div>
-                
-                <div class="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center">
-                    <p class="text-gray-500 text-sm mb-4 md:mb-0">© 2023 ONLINE COURSES FREE. All rights reserved.</p>
-                    <div class="flex space-x-6">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/SadaPay_logo.svg/1200px-SadaPay_logo.svg.png" alt="SadaPay" class="h-6 opacity-80">
-                        <img src="https://cryptologos.cc/logos/bnb-bnb-logo.png" alt="Binance" class="h-6 opacity-80">
-                    </div>
-                </div>
-            </div>
-        </footer>
-
-        <!-- Subscription Modal -->
-        <div id="subscriptionModal" class="modal-overlay hidden">
-            <div class="modal-content">
-                <h3 class="text-2xl font-bold text-gray-900 mb-2">Complete Your Subscription</h3>
-                <p class="text-gray-600 mb-6">After payment, please provide your details for verification</p>
-                
-                <form id="subscriptionForm" class="space-y-4">
-                    <div>
-                        <label for="subName" class="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
-                        <input type="text" id="subName" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500">
-                    </div>
-                    
-                    <div>
-                        <label for="subContact" class="block text-sm font-medium text-gray-700 mb-1">WhatsApp Number</label>
-                        <input type="tel" id="subContact" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500">
-                    </div>
-                    
-                    <div>
-                        <label for="subPaymentMethod" class="block text-sm font-medium text-gray-700 mb-1">Payment Method</label>
-                        <select id="subPaymentMethod" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500">
-                            <option value="">Select payment method</option>
-                            <option value="sadapay">SadaPay (03446492768 - Abdul RAZZAQ)</option>
-                            <option value="binance">Binance (ID: 907674656 - MSARIM21)</option>
-                        </select>
-                    </div>
-                    
-                    <div>
-                        <label for="subScreenshot" class="block text-sm font-medium text-gray-700 mb-1">Payment Screenshot</label>
-                        <input type="file" id="subScreenshot" accept="image/*" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500">
-                    </div>
-                    
-                    <div class="flex space-x-4 pt-2">
-                        <button type="button" id="cancelSubscriptionBtn" class="flex-grow px-6 py-3 border border-gray-300 text-gray-700 rounded-lg font-medium hover:bg-gray-50 transition-colors">
-                            Cancel
-                        </button>
-                        <button type="submit" id="confirmSubscriptionBtn" class="flex-grow btn-primary py-3">
-                            Submit Details
-                        </button>
-                    </div>
-                </form>
-            </div>
-        </div>
-
-        <!-- Admin Login Modal -->
-        <div id="adminLoginModal" class="modal-overlay hidden">
-            <div class="modal-content">
-                <h3 class="text-2xl font-bold text-gray-900 mb-6 text-center">Admin Login</h3>
-                
-                <form id="adminLoginForm" class="space-y-6">
-                    <div>
-                        <label for="adminEmail" class="block text-sm font-medium text-gray-700 mb-1">Email</label>
-                        <input type="email" id="adminEmail" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500">
-                    </div>
-                    
-                    <div>
-                        <label for="adminPassword" class="block text-sm font-medium text-gray-700 mb-1">Password</label>
-                        <input type="password" id="adminPassword" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500">
-                    </div>
-                    
-                    <div id="adminLoginError" class="text-red-600 text-sm hidden"></div>
-                    
-                    <button type="submit" class="btn-primary w-full py-3">
-                        Login <i class="fas fa-sign-in-alt ml-2"></i>
-                    </button>
-                </form>
-            </div>
-        </div>
-
-        <!-- Admin Panel Modal -->
-        <div id="adminPanelModal" class="modal-overlay hidden">
-            <div class="modal-content max-w-4xl">
-                <div class="flex justify-between items-center mb-6">
-                    <h3 class="text-2xl font-bold text-gray-900">Admin Panel</h3>
-                    <button id="closeAdminPanelBtn" class="text-gray-500 hover:text-gray-700">
-                        <i class="fas fa-times text-xl"></i>
-                    </button>
-                </div>
-                
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div class="bg-gray-50 p-6 rounded-lg">
-                        <h4 class="text-lg font-semibold mb-4">Add New Course</h4>
-                        
-                        <form id="addCourseForm" class="space-y-4">
-                            <div>
-                                <label for="courseTitle" class="block text-sm font-medium text-gray-700 mb-1">Course Title</label>
-                                <input type="text" id="courseTitle" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500">
-                            </div>
-                            
-                            <div>
-                                <label for="courseDescription" class="block text-sm font-medium text-gray-700 mb-1">Description</label>
-                                <textarea id="courseDescription" rows="3" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500"></textarea>
-                            </div>
-                            
-                            <div>
-                                <label for="courseImage" class="block text-sm font-medium text-gray-700 mb-1">Course Image URL</label>
-                                <input type="url" id="courseImage" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500">
-                            </div>
-                            
-                            <div>
-                                <label for="courseLink" class="block text-sm font-medium text-gray-700 mb-1">Course Link</label>
-                                <input type="url" id="courseLink" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500">
-                            </div>
-                            
-                            <button type="submit" class="btn-primary w-full py-3">
-                                Add Course <i class="fas fa-plus-circle ml-2"></i>
-                            </button>
-                        </form>
-                    </div>
-                    
-                    <div class="bg-gray-50 p-6 rounded-lg">
-                        <h4 class="text-lg font-semibold mb-4">Manage Live Sessions</h4>
-                        
-                        <form id="liveSessionForm" class="space-y-4">
-                            <div>
-                                <label for="youtubeLiveUrl" class="block text-sm font-medium text-gray-700 mb-1">YouTube Live URL</label>
-                                <input type="url" id="youtubeLiveUrl" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500">
-                            </div>
-                            
-                            <div>
-                                <label for="nextSessionTime" class="block text-sm font-medium text-gray-700 mb-1">Next Session Time</label>
-                                <input type="datetime-local" id="nextSessionTime" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500">
-                            </div>
-                            
-                            <div>
-                                <label for="sessionTopic" class="block text-sm font-medium text-gray-700 mb-1">Session Topic</label>
-                                <input type="text" id="sessionTopic" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500">
-                            </div>
-                            
-                            <button type="submit" class="btn-primary w-full py-3">
-                                Update Live Session <i class="fas fa-save ml-2"></i>
-                            </button>
-                        </form>
-                        
-                        <div class="mt-8">
-                            <h4 class="text-lg font-semibold mb-4">Recent Subscribers</h4>
-                            <div class="bg-white p-4 rounded-lg shadow-inner max-h-60 overflow-y-auto">
-                                <div class="space-y-3" id="subscribersList">
-                                    <div class="flex items-center justify-between p-2 hover:bg-gray-50 rounded">
-                                        <div>
-                                            <p class="font-medium">Aisha Khan</p>
-                                            <p class="text-sm text-gray-600">+923001234567</p>
-                                        </div>
-                                        <span class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded">Verified</span>
-                                    </div>
-                                    <div class="flex items-center justify-between p-2 hover:bg-gray-50 rounded">
-                                        <div>
-                                            <p class="font-medium">Ahmed Raza</p>
-                                            <p class="text-sm text-gray-600">+923451234567</p>
-                                        </div>
-                                        <span class="text-xs bg-yellow-100 text-yellow-800 px-2 py-1 rounded">Pending</span>
-                                    </div>
+                    <div class="space-y-4 mb-6" id="upcomingSessions">
+                        <!-- Sessions will be loaded here -->
+                        <div class="bg-gray-800 p-4 rounded-lg">
+                            <div class="flex items-start">
+                                <div class="bg-gray-600 text-white text-xs font-bold px-2 py-1 rounded mr-3">UPCOMING</div>
+                                <div>
+                                    <h4 class="font-semibold">Loading sessions...</h4>
+                                    <p class="text-sm text-gray-400">Please wait</p>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    
+                    <div class="bg-gray-800 p-4 rounded-lg">
+                        <h4 class="font-semibold mb-2">Get Notified</h4>
+                        <p class="text-sm text-gray-400 mb-3">Subscribe to get notified when we go live</p>
+                        <div class="flex">
+                            <input type="email" placeholder="Your email" class="flex-grow px-4 py-2 bg-gray-700 text-white rounded-l-lg focus:outline-none focus:ring-2 focus:ring-primary-500">
+                            <button class="bg-primary-500 hover:bg-primary-600 px-4 py-2 rounded-r-lg text-white font-medium">
+                                <i class="fas fa-bell"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Testimonials Section -->
+<section class="py-16 bg-gray-50">
+    <div class="container mx-auto px-4">
+        <div class="text-center mb-16">
+            <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">What Our Students Say</h2>
+            <p class="text-lg text-gray-600 max-w-2xl mx-auto">Don't just take our word for it - hear from our community</p>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="card p-6">
+                <div class="flex items-center mb-4">
+                    <img src="https://randomuser.me/api/portraits/women/32.jpg" alt="Student" class="w-12 h-12 rounded-full mr-4">
+                    <div>
+                        <h4 class="font-semibold">Aisha Khan</h4>
+                        <div class="flex text-yellow-400 text-sm">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+                <p class="text-gray-600">"The premium courses helped me land my first freelance client within a month!"</p>
+            </div>
+            
+            <div class="card p-6">
+                <div class="flex items-center mb-4">
+                    <img src="https://randomuser.me/api/portraits/men/45.jpg" alt="Student" class="w-12 h-12 rounded-full mr-4">
+                    <div>
+                        <h4 class="font-semibold">Ahmed Raza</h4>
+                        <div class="flex text-yellow-400 text-sm">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+                <p class="text-gray-600">"The business ideas section gave me the perfect startup plan. Now earning 50K/month."</p>
+            </div>
+            
+            <div class="card p-6">
+                <div class="flex items-center mb-4">
+                    <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Student" class="w-12 h-12 rounded-full mr-4">
+                    <div>
+                        <h4 class="font-semibold">Fatima Ali</h4>
+                        <div class="flex text-yellow-400 text-sm">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                    </div>
+                </div>
+                <p class="text-gray-600">"Best investment in my education. The premium content is worth 10x the price."</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="py-16 gradient-bg">
+    <div class="container mx-auto px-4 text-center">
+        <h2 class="text-3xl md:text-4xl font-bold text-white mb-6">Ready to Start Learning?</h2>
+        <p class="text-xl text-white opacity-90 mb-8 max-w-2xl mx-auto">Join thousands of students who are advancing their careers with our courses.</p>
+        <button id="finalSubscribeBtn" class="bg-white text-primary-600 hover:bg-gray-100 px-10 py-4 rounded-full text-lg font-semibold shadow-lg transition-colors">
+            Get 3 Months Access for 150 PKR
+        </button>
+    </div>
+</section>
+
+<!-- Contact Section -->
+<section id="contact" class="py-16 bg-white">
+    <div class="container mx-auto px-4">
+        <div class="text-center mb-16">
+            <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Have Questions?</h2>
+            <p class="text-lg text-gray-600 max-w-2xl mx-auto">Contact us directly for any inquiries or support</p>
+        </div>
+        
+        <div class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div class="card p-8">
+                <h3 class="text-xl font-bold text-gray-900 mb-6">Contact Information</h3>
+                
+                <div class="space-y-6">
+                    <div class="flex items-start">
+                        <div class="w-10 h-10 bg-primary-100 rounded-full flex items-center justify-center text-primary-600 mr-4">
+                            <i class="fas fa-phone-alt"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-gray-900">Phone / WhatsApp</h4>
+                            <p class="text-gray-600">+92 332 6942269</p>
+                            <p class="text-sm text-gray-500">(GAME CHANGER)</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-start">
+                        <div class="w-10 h-10 bg-primary-100 rounded-full flex items-center justify-center text-primary-600 mr-4">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-gray-900">Email</h4>
+                            <p class="text-gray-600">support@onlinecoursesfree.com</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-start">
+                        <div class="w-10 h-10 bg-primary-100 rounded-full flex items-center justify-center text-primary-600 mr-4">
+                            <i class="fab fa-youtube"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-gray-900">YouTube Channel</h4>
+                            <p class="text-gray-600">youtube.com/@msarim2122</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card p-8">
+                <h3 class="text-xl font-bold text-gray-900 mb-6">Send Us a Message</h3>
+                
+                <form id="contactForm" class="space-y-4">
+                    <div>
+                        <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Your Name</label>
+                        <input type="text" id="name" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500">
+                    </div>
+                    
+                    <div>
+                        <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
+                        <input type="email" id="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500">
+                    </div>
+                    
+                    <div>
+                        <label for="message" class="block text-sm font-medium text-gray-700 mb-1">Message</label>
+                        <textarea id="message" rows="4" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500"></textarea>
+                    </div>
+                    
+                    <button type="submit" class="btn-primary w-full py-3">
+                        Send Message <i class="fas fa-paper-plane ml-2"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="bg-darker text-white py-12">
+    <div class="container mx-auto px-4">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+            <div>
+                <div class="flex items-center space-x-2 mb-4">
+                    <div class="w-10 h-10 rounded-full gradient-bg flex items-center justify-center text-white font-bold">
+                        OCF
+                    </div>
+                    <h3 class="text-xl font-bold">ONLINE COURSES FREE</h3>
+                </div>
+                <p class="text-gray-400">Premium online learning platform with free and premium courses.</p>
+            </div>
+            
+            <div>
+                <h4 class="text-lg font-semibold mb-4">Quick Links</h4>
+                <ul class="space-y-2">
+                    <li><a href="#home" class="text-gray-400 hover:text-white transition-colors">Home</a></li>
+                    <li><a href="#courses" class="text-gray-400 hover:text-white transition-colors">Courses</a></li>
+                    <li><a href="#business" class="text-gray-400 hover:text-white transition-colors">Business Ideas</a></li>
+                    <li><a href="#pricing" class="text-gray-400 hover:text-white transition-colors">Pricing</a></li>
+                </ul>
+            </div>
+            
+            <div>
+                <h4 class="text-lg font-semibold mb-4">Support</h4>
+                <ul class="space-y-2">
+                    <li><a href="#" class="text-gray-400 hover:text-white transition-colors">FAQs</a></li>
+                    <li><a href="#contact" class="text-gray-400 hover:text-white transition-colors">Contact Us</a></li>
+                    <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Privacy Policy</a></li>
+                    <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Terms of Service</a></li>
+                </ul>
+            </div>
+            
+            <div>
+                <h4 class="text-lg font-semibold mb-4">Connect With Us</h4>
+                <div class="flex space-x-4 mb-4">
+                    <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center text-white hover:bg-primary-500 transition-colors">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center text-white hover:bg-primary-500 transition-colors">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center text-white hover:bg-primary-500 transition-colors">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://youtube.com/@msarim2122" target="_blank" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center text-white hover:bg-primary-500 transition-colors">
+                        <i class="fab fa-youtube"></i>
+                    </a>
+                </div>
+                <p class="text-gray-400 text-sm">Subscribe to our newsletter for updates</p>
+            </div>
+        </div>
+        
+        <div class="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center">
+            <p class="text-gray-500 text-sm mb-4 md:mb-0">© 2023 ONLINE COURSES FREE. All rights reserved.</p>
+            <div class="flex space-x-6">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/SadaPay_logo.svg/1200px-SadaPay_logo.svg.png" alt="SadaPay" class="h-6 opacity-80">
+                <img src="https://cryptologos.cc/logos/bnb-bnb-logo.png" alt="Binance" class="h-6 opacity-80">
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- Subscription Modal -->
+<div id="subscriptionModal" class="modal-overlay hidden">
+    <div class="modal-content">
+        <div class="flex justify-between items-center mb-4">
+            <h3 class="text-2xl font-bold text-gray-900">Complete Your Subscription</h3>
+            <button id="closeSubscriptionModal" class="text-gray-500 hover:text-gray-700">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <p class="text-gray-600 mb-6">After payment, please provide your details for verification</p>
+        
+        <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4 mb-6">
+            <div class="flex">
+                <div class="flex-shrink-0">
+                    <i class="fas fa-info-circle text-yellow-500"></i>
+                </div>
+                <div class="ml-3">
+                    <p class="text-sm text-yellow-700">
+                        <strong>Payment Instructions:</strong> Send 150 PKR to the selected payment method and upload screenshot below.
+                    </p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+            <div class="payment-method border rounded-lg p-4 cursor-pointer active" data-method="sadapay">
+                <div class="flex items-center">
+                    <div class="w-12 h-12 bg-blue-50 rounded-lg flex items-center justify-center mr-4">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/SadaPay_logo.svg/1200px-SadaPay_logo.svg.png" alt="SadaPay" class="h-6">
+                    </div>
+                    <div>
+                        <h4 class="font-semibold text-gray-900">SadaPay</h4>
+                        <p class="text-sm text-gray-600">03446492768 (Abdul RAZZAQ)</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="payment-method border rounded-lg p-4 cursor-pointer" data-method="binance">
+                <div class="flex items-center">
+                    <div class="w-12 h-12 bg-yellow-50 rounded-lg flex items-center justify-center mr-4">
+                        <img src="https://cryptologos.cc/logos/bnb-bnb-logo.png" alt="Binance" class="h-6">
+                    </div>
+                    <div>
+                        <h4 class="font-semibold text-gray-900">Binance</h4>
+                        <p class="text-sm text-gray-600">ID: 907674656 (MSARIM21)</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <form id="subscriptionForm" class="space-y-4">
+            <div>
+                <label for="subName" class="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
+                <input type="text" id="subName" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500">
+            </div>
+            
+            <div>
+                <label for="subContact" class="block text-sm font-medium text-gray-700 mb-1">WhatsApp Number</label>
+                <input type="tel" id="subContact" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500">
+            </div>
+            
+            <div>
+                <label for="subPaymentMethod" class="block text-sm font-medium text-gray-700 mb-1">Payment Method</label>
+                <select id="subPaymentMethod" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500">
+                    <option value="">Select payment method</option>
+                    <option value="sadapay">SadaPay (03446492768 - Abdul RAZZAQ)</option>
+                    <option value="binance">Binance (ID: 907674656 - MSARIM21)</option>
+                </select>
+            </div>
+            
+            <div>
+                <label for="subScreenshot" class="block text-sm font-medium text-gray-700 mb-1">Payment Screenshot</label>
+                <input type="file" id="subScreenshot" accept="image/*" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500">
+                <p class="text-xs text-gray-500 mt-1">Upload a clear screenshot of your payment transaction</p>
+            </div>
+            
+            <div class="flex space-x-4 pt-2">
+                <button type="button" id="cancelSubscriptionBtn" class="flex-grow px-6 py-3 border border-gray-300 text-gray-700 rounded-lg font-medium hover:bg-gray-50 transition-colors">
+                    Cancel
+                </button>
+                <button type="submit" id="confirmSubscriptionBtn" class="flex-grow btn-primary py-3">
+                    Submit Details
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Admin Login Modal -->
+<div id="adminLoginModal" class="modal-overlay hidden">
+    <div class="modal-content">
+        <h3 class="text-2xl font-bold text-gray-900 mb-6 text-center">Admin Login</h3>
+        
+        <form id="adminLoginForm" class="space-y-6">
+            <div>
+                <label for="adminEmail" class="block text-sm font-medium text-gray-700 mb-1">Email</label>
+                <input type="email" id="adminEmail" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500">
+            </div>
+            
+            <div>
+                <label for="adminPassword" class="block text-sm font-medium text-gray-700 mb-1">Password</label>
+                <input type="password" id="adminPassword" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500">
+            </div>
+            
+            <div id="adminLoginError" class="text-red-600 text-sm hidden"></div>
+            
+            <button type="submit" class="btn-primary w-full py-3">
+                Login <i class="fas fa-sign-in-alt ml-2"></i>
+            </button>
+        </form>
+    </div>
+</div>
+
+<!-- Admin Panel Modal -->
+<div id="adminPanelModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+    <div class="bg-white rounded-xl shadow-2xl w-full max-w-6xl max-h-[90vh] overflow-hidden">
+        <div class="flex justify-between items-center border-b p-6">
+            <h3 class="text-2xl font-bold text-gray-900">Admin Dashboard</h3>
+            <button id="closeAdminPanelBtn" class="text-gray-500 hover:text-gray-700">
+                <i class="fas fa-times text-xl"></i>
+            </button>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-4 h-full">
+            <!-- Sidebar -->
+            <div class="bg-gray-50 p-4 border-r">
+                <div class="flex items-center space-x-3 mb-8 p-3 bg-white rounded-lg shadow-sm">
+                    <div class="w-10 h-10 rounded-full gradient-bg flex items-center justify-center text-white font-bold">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold" id="adminEmailDisplay">admin@example.com</h4>
+                        <p class="text-xs text-gray-500">Super Admin</p>
+                    </div>
                 </div>
                 
-                <div class="mt-8">
-                    <h4 class="text-lg font-semibold mb-4">Current Courses</h4>
-                    <div class="bg-white p-4 rounded-lg shadow-inner">
+                <nav class="space-y-1">
+                    <button data-tab="dashboard" class="admin-tab-btn w-full text-left px-4 py-3 bg-primary-100 text-primary-700 rounded-lg font-medium">
+                        <i class="fas fa-tachometer-alt mr-2"></i> Dashboard
+                    </button>
+                    <button data-tab="courses" class="admin-tab-btn w-full text-left px-4 py-3 hover:bg-gray-100 rounded-lg font-medium">
+                        <i class="fas fa-book mr-2"></i> Courses
+                    </button>
+                    <button data-tab="subscribers" class="admin-tab-btn w-full text-left px-4 py-3 hover:bg-gray-100 rounded-lg font-medium">
+                        <i class="fas fa-users mr-2"></i> Subscribers
+                    </button>
+                    <button data-tab="live" class="admin-tab-btn w-full text-left px-4 py-3 hover:bg-gray-100 rounded-lg font-medium">
+                        <i class="fas fa-video mr-2"></i> Live Sessions
+                    </button>
+                    <button data-tab="settings" class="admin-tab-btn w-full text-left px-4 py-3 hover:bg-gray-100 rounded-lg font-medium">
+                        <i class="fas fa-cog mr-2"></i> Settings
+                    </button>
+                </nav>
+            </div>
+            
+            <!-- Main Content -->
+            <div class="col-span-3 p-6 overflow-y-auto">
+                <!-- Dashboard Tab -->
+                <div id="dashboard-tab" class="admin-tab-content">
+                    <h4 class="text-xl font-bold mb-6">Dashboard Overview</h4>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                        <div class="bg-white p-6 rounded-xl shadow border border-gray-100">
+                            <div class="flex justify-between">
+                                <div>
+                                    <p class="text-gray-500">Total Subscribers</p>
+                                    <h3 class="text-3xl font-bold" id="totalSubscribers">0</h3>
+                                </div>
+                                <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center text-blue-600">
+                                    <i class="fas fa-users"></i>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-white p-6 rounded-xl shadow border border-gray-100">
+                            <div class="flex justify-between">
+                                <div>
+                                    <p class="text-gray-500">Active Subscribers</p>
+                                    <h3 class="text-3xl font-bold" id="activeSubscribers">0</h3>
+                                </div>
+                                <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center text-green-600">
+                                    <i class="fas fa-user-check"></i>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-white p-6 rounded-xl shadow border border-gray-100">
+                            <div class="flex justify-between">
+                                <div>
+                                    <p class="text-gray-500">Total Courses</p>
+                                    <h3 class="text-3xl font-bold" id="totalCourses">0</h3>
+                                </div>
+                                <div class="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center text-purple-600">
+                                    <i class="fas fa-book"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white p-6 rounded-xl shadow border border-gray-100 mb-6">
+                        <h5 class="font-semibold mb-4">Recent Subscribers</h5>
                         <div class="overflow-x-auto">
                             <table class="min-w-full divide-y divide-gray-200">
                                 <thead class="bg-gray-50">
                                     <tr>
-                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Title</th>
-                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Link</th>
-                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Contact</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date</th>
                                     </tr>
                                 </thead>
-                                <tbody class="bg-white divide-y divide-gray-200" id="adminCoursesList">
-                                    <tr>
-                                        <td class="px-6 py-4 whitespace-nowrap">Web Development Basics</td>
-                                        <td class="px-6 py-4 whitespace-nowrap text-blue-600 underline">https://example.com/course1</td>
-                                        <td class="px-6 py-4 whitespace-nowrap">
-                                            <button class="text-red-600 hover:text-red-900">
-                                                <i class="fas fa-trash"></i>
-                                            </button>
-                                        </td>
-                                    </tr>
+                                <tbody class="bg-white divide-y divide-gray-200" id="recentSubscribers">
+                                    <!-- Filled by JavaScript -->
                                 </tbody>
                             </table>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-
-        <!-- Loading Overlay -->
-        <div id="loadingOverlay" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
-            <div class="bg-white p-8 rounded-lg flex flex-col items-center">
-                <div class="loading-spinner mb-4"></div>
-                <p class="text-gray-700">Processing your request...</p>
-            </div>
-        </div>
-
-        <!-- Floating Action Button -->
-        <button id="floatingSupportBtn" class="fixed bottom-6 right-6 w-14 h-14 gradient-bg rounded-full text-white flex items-center justify-center shadow-lg floating-button hover:scale-110 transition-transform">
-            <i class="fas fa-headset text-xl"></i>
-        </button>
-
-        <script type="module">
-            document.addEventListener('DOMContentLoaded', () => {
-                // DOM Elements
-                const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-                const mobileMenu = document.getElementById('mobileMenu');
-                const subscriptionModal = document.getElementById('subscriptionModal');
-                const subscriptionForm = document.getElementById('subscriptionForm');
-                const cancelSubscriptionBtn = document.getElementById('cancelSubscriptionBtn');
-                const confirmSubscriptionBtn = document.getElementById('confirmSubscriptionBtn');
-                const adminLoginBtn = document.getElementById('loginBtn');
-                const mobileLoginBtn = document.getElementById('mobileLoginBtn');
-                const adminLoginModal = document.getElementById('adminLoginModal');
-                const adminLoginForm = document.getElementById('adminLoginForm');
-                const adminPanelModal = document.getElementById('adminPanelModal');
-                const closeAdminPanelBtn = document.getElementById('closeAdminPanelBtn');
-                const loadingOverlay = document.getElementById('loadingOverlay');
-                const floatingSupportBtn = document.getElementById('floatingSupportBtn');
-                const visitChannelBtn = document.getElementById('visitChannelBtn');
                 
-                // Subscription buttons
-                const subscribeButtons = [
-                    document.getElementById('subscribeBtn'),
-                    document.getElementById('heroSubscribeBtn'),
-                    document.getElementById('pricingSubscribeBtn'),
-                    document.getElementById('finalSubscribeBtn')
-                ];
-                
-                // Sample courses data (in a real app, this would come from Firebase)
-                const sampleCourses = [
-                    {
-                        id: 1,
-                        title: "Web Development Fundamentals",
-                        description: "Learn HTML, CSS, and JavaScript from scratch",
-                        image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
-                        link: "#"
-                    },
-                    {
-                        id: 2,
-                        title: "Python for Beginners",
-                        description: "Start your programming journey with Python",
-                        image: "https://images.unsplash.com/photo-1526379095098-d400fd0bf935?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
-                        link: "#"
-                    },
-                    {
-                        id: 3,
-                        title: "Digital Marketing Masterclass",
-                        description: "Learn SEO, Social Media, and Content Marketing",
-                        image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
-                        link: "#"
-                    }
-                ];
-                
-                // Initialize UI
-                function initUI() {
-                    renderCourses();
-                    setupEventListeners();
-                }
-                
-                // Render courses
-                function renderCourses() {
-                    const coursesContainer = document.getElementById('coursesContainer');
-                    coursesContainer.innerHTML = '';
+                <!-- Courses Tab -->
+                <div id="courses-tab" class="admin-tab-content hidden">
+                    <div class="flex justify-between items-center mb-6">
+                        <h4 class="text-xl font-bold">Manage Courses</h4>
+                        <button id="addCourseBtn" class="btn-primary px-4 py-2 text-sm">
+                            <i class="fas fa-plus mr-2"></i> Add Course
+                        </button>
+                    </div>
                     
-                    sampleCourses.forEach(course => {
-                        const courseElement = document.createElement('div');
-                        courseElement.className = 'course-card animate-fade-in';
-                        courseElement.innerHTML = `
-                            <img src="${course.image}" alt="${course.title}" class="course-image">
-                            <div class="p-6">
-                                <h3 class="text-xl font-bold text-gray-900 mb-2">${course.title}</h3>
-                                <p class="text-gray-600 mb-4">${course.description}</p>
-                                <a href="${course.link}" class="text-primary-600 font-medium hover:text-primary-800 transition-colors inline-flex items-center">
-                                    View Course <i class="fas fa-arrow-right ml-2"></i>
-                                </a>
+                    <div class="bg-white p-6 rounded-xl shadow border border-gray-100 mb-6">
+                        <div class="overflow-x-auto">
+                            <table class="min-w-full divide-y divide-gray-200">
+                                <thead class="bg-gray-50">
+                                    <tr>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Title</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Type</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="bg-white divide-y divide-gray-200" id="adminCoursesList">
+                                    <!-- Filled by JavaScript -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Subscribers Tab -->
+                <div id="subscribers-tab" class="admin-tab-content hidden">
+                    <div class="flex justify-between items-center mb-6">
+                        <h4 class="text-xl font-bold">Manage Subscribers</h4>
+                        <div class="flex space-x-2">
+                            <select id="subscriberFilter" class="border rounded-lg px-3 py-2 text-sm">
+                                <option value="all">All Subscribers</option>
+                                <option value="active">Active Only</option>
+                                <option value="pending">Pending Verification</option>
+                                <option value="expired">Expired</option>
+                            </select>
+                            <button id="exportSubscribersBtn" class="border border-primary-500 text-primary-600 px-3 py-2 rounded-lg text-sm hover:bg-primary-50">
+                                <i class="fas fa-download mr-1"></i> Export
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white p-6 rounded-xl shadow border border-gray-100 mb-6">
+                        <div class="overflow-x-auto">
+                            <table class="min-w-full divide-y divide-gray-200">
+                                <thead class="bg-gray-50">
+                                    <tr>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Contact</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Payment Method</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Expiry Date</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="bg-white divide-y divide-gray-200" id="adminSubscribersList">
+                                    <!-- Filled by JavaScript -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Live Sessions Tab -->
+                <div id="live-tab" class="admin-tab-content hidden">
+                    <h4 class="text-xl font-bold mb-6">Manage Live Sessions</h4>
+                    
+                    <div class="bg-white p-6 rounded-xl shadow border border-gray-100 mb-6">
+                        <form id="liveSessionForm">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">YouTube Live URL</label>
+                                    <input type="url" id="youtubeLiveUrl" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500">
+                                </div>
+                                
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">Next Session Time</label>
+                                    <input type="datetime-local" id="nextSessionTime" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500">
+                                </div>
+                                
+                                <div class="md:col-span-2">
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">Session Topic</label>
+                                    <input type="text" id="sessionTopic" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500">
+                                </div>
+                                
+                                <div class="md:col-span-2">
+                                    <button type="submit" class="btn-primary w-full py-3">
+                                        <i class="fas fa-save mr-2"></i> Save Settings
+                                    </button>
+                                </div>
                             </div>
-                        `;
-                        coursesContainer.appendChild(courseElement);
-                    });
+                        </form>
+                    </div>
+                    
+                    <div class="bg-white p-6 rounded-xl shadow border border-gray-100">
+                        <h5 class="font-semibold mb-4">Upcoming Sessions</h5>
+                        <div id="adminUpcomingSessions">
+                            <!-- Filled by JavaScript -->
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Settings Tab -->
+                <div id="settings-tab" class="admin-tab-content hidden">
+                    <h4 class="text-xl font-bold mb-6">Platform Settings</h4>
+                    
+                    <div class="bg-white p-6 rounded-xl shadow border border-gray-100 mb-6">
+                        <h5 class="font-semibold mb-4">Payment Methods</h5>
+                        
+                        <div class="space-y-4">
+                            <div class="border rounded-lg p-4">
+                                <div class="flex items-center justify-between mb-3">
+                                    <div class="flex items-center">
+                                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/SadaPay_logo.svg/1200px-SadaPay_logo.svg.png" alt="SadaPay" class="h-6 mr-3">
+                                        <h6 class="font-medium">SadaPay</h6>
+                                    </div>
+                                    <label class="inline-flex items-center cursor-pointer">
+                                        <input type="checkbox" id="sadapayEnabled" class="sr-only peer" checked>
+                                        <div class="relative w-11 h-6 bg-gray-200 peer-focus:
+                                       
+                                            peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
+                                        </label>
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm text-gray-500 mb-1">Account Number</label>
+                                        <div class="flex">
+                                            <input type="text" id="sadapayNumber" value="03446492768" class="flex-grow px-3 py-2 border border-gray-300 rounded-l-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500">
+                                            <button class="bg-gray-100 px-3 py-2 border border-l-0 rounded-r-lg hover:bg-gray-200">
+                                                <i class="fas fa-copy"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="mt-2">
+                                        <label class="block text-sm text-gray-500 mb-1">Account Name</label>
+                                        <input type="text" id="sadapayName" value="Abdul RAZZAQ" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500">
+                                    </div>
+                                </div>
+                                
+                                <div class="border rounded-lg p-4">
+                                    <div class="flex items-center justify-between mb-3">
+                                        <div class="flex items-center">
+                                            <img src="https://cryptologos.cc/logos/bnb-bnb-logo.png" alt="Binance" class="h-6 mr-3">
+                                            <h6 class="font-medium">Binance</h6>
+                                        </div>
+                                        <label class="inline-flex items-center cursor-pointer">
+                                            <input type="checkbox" id="binanceEnabled" class="sr-only peer" checked>
+                                            <div class="relative w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
+                                        </label>
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm text-gray-500 mb-1">Binance ID</label>
+                                        <div class="flex">
+                                            <input type="text" id="binanceId" value="907674656" class="flex-grow px-3 py-2 border border-gray-300 rounded-l-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500">
+                                            <button class="bg-gray-100 px-3 py-2 border border-l-0 rounded-r-lg hover:bg-gray-200">
+                                                <i class="fas fa-copy"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="mt-2">
+                                        <label class="block text-sm text-gray-500 mb-1">Account Name</label>
+                                        <input type="text" id="binanceName" value="MSARIM21" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500">
+                                    </div>
+                                </div>
+                                
+                                <button class="btn-primary w-full py-3 mt-4">
+                                    <i class="fas fa-save mr-2"></i> Save Payment Methods
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-white p-6 rounded-xl shadow border border-gray-100">
+                            <h5 class="font-semibold mb-4">Subscription Settings</h5>
+                            
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">Subscription Price (PKR)</label>
+                                    <input type="number" id="subscriptionPrice" value="150" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500">
+                                </div>
+                                
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">Subscription Duration (Months)</label>
+                                    <input type="number" id="subscriptionDuration" value="3" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500">
+                                </div>
+                                
+                                <div class="flex items-end">
+                                    <button class="btn-primary w-full py-3">
+                                        <i class="fas fa-save mr-2"></i> Update
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Course Modal -->
+    <div id="addCourseModal" class="modal-overlay hidden">
+        <div class="modal-content">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="text-2xl font-bold text-gray-900">Add New Course</h3>
+                <button id="closeAddCourseModal" class="text-gray-500 hover:text-gray-700">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <form id="addCourseForm" class="space-y-4">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Course Title</label>
+                    <input type="text" id="courseTitle" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500">
+                </div>
+                
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Description</label>
+                    <textarea id="courseDescription" rows="3" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500"></textarea>
+                </div>
+                
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Course Image URL</label>
+                    <input type="url" id="courseImage" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500">
+                    <p class="text-xs text-gray-500 mt-1">Leave empty to use default image</p>
+                </div>
+                
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Course Link</label>
+                    <input type="url" id="courseLink" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500">
+                </div>
+                
+                <div>
+                    <label class="inline-flex items-center">
+                        <input type="checkbox" id="courseIsFree" class="rounded border-gray-300 text-primary-600 shadow-sm focus:border-primary-300 focus:ring focus:ring-primary-200 focus:ring-opacity-50">
+                        <span class="ml-2">Mark as Free Course</span>
+                    </label>
+                </div>
+                
+                <div class="flex space-x-4 pt-2">
+                    <button type="button" id="cancelAddCourseBtn" class="flex-grow px-6 py-3 border border-gray-300 text-gray-700 rounded-lg font-medium hover:bg-gray-50 transition-colors">
+                        Cancel
+                    </button>
+                    <button type="submit" class="flex-grow btn-primary py-3">
+                        Add Course
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- View Subscriber Modal -->
+    <div id="viewSubscriberModal" class="modal-overlay hidden">
+        <div class="modal-content max-w-md">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="text-2xl font-bold text-gray-900">Subscriber Details</h3>
+                <button id="closeViewSubscriberModal" class="text-gray-500 hover:text-gray-700">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <div class="space-y-4">
+                <div>
+                    <label class="block text-sm font-medium text-gray-500">Name</label>
+                    <p class="mt-1 font-medium" id="subscriberName">Loading...</p>
+                </div>
+                
+                <div>
+                    <label class="block text-sm font-medium text-gray-500">Contact</label>
+                    <p class="mt-1 font-medium" id="subscriberContact">Loading...</p>
+                </div>
+                
+                <div>
+                    <label class="block text-sm font-medium text-gray-500">Payment Method</label>
+                    <p class="mt-1 font-medium" id="subscriberPaymentMethod">Loading...</p>
+                </div>
+                
+                <div>
+                    <label class="block text-sm font-medium text-gray-500">Status</label>
+                    <p class="mt-1">
+                        <span id="subscriberStatusBadge" class="px-2 py-1 text-xs rounded-full bg-gray-100 text-gray-800">Loading...</span>
+                    </p>
+                </div>
+                
+                <div>
+                    <label class="block text-sm font-medium text-gray-500">Subscription Period</label>
+                    <p class="mt-1 font-medium" id="subscriberPeriod">Loading...</p>
+                </div>
+                
+                <div id="paymentScreenshotContainer" class="hidden">
+                    <label class="block text-sm font-medium text-gray-500">Payment Screenshot</label>
+                    <div class="mt-2">
+                        <img id="paymentScreenshotImg" src="" alt="Payment Screenshot" class="max-w-full h-auto rounded-lg border">
+                    </div>
+                </div>
+                
+                <div class="flex space-x-3 pt-4" id="subscriberActionButtons">
+                    <button id="verifySubscriberBtn" class="flex-1 bg-green-600 hover:bg-green-700 text-white py-2 rounded-lg">
+                        Verify
+                    </button>
+                    <button id="rejectSubscriberBtn" class="flex-1 bg-red-600 hover:bg-red-700 text-white py-2 rounded-lg">
+                        Reject
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div id="loadingOverlay" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+        <div class="bg-white p-8 rounded-lg flex flex-col items-center">
+            <div class="loading-spinner mb-4"></div>
+            <p class="text-gray-700">Processing your request...</p>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toastNotification" class="toast hidden"></div>
+
+    <!-- Floating Action Button -->
+    <button id="floatingSupportBtn" class="fixed bottom-6 right-6 w-14 h-14 gradient-bg rounded-full text-white flex items-center justify-center shadow-lg floating-button hover:scale-110 transition-transform">
+        <i class="fas fa-headset text-xl"></i>
+    </button>
+
+    <!-- Firebase Configuration -->
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.0/firebase-app.js";
+        import { getFirestore, collection, addDoc, getDocs, doc, deleteDoc, updateDoc, onSnapshot, query, where, getDoc, orderBy, limit } from "https://www.gstatic.com/firebasejs/9.6.0/firebase-firestore.js";
+        import { getAuth, signInWithEmailAndPassword, signOut } from "https://www.gstatic.com/firebasejs/9.6.0/firebase-auth.js";
+        import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/9.6.0/firebase-storage.js";
+
+        // Your Firebase config
+        const firebaseConfig = {
+            apiKey: "AIzaSyAR9J2Wz7Eu8dXRzDG8JNHcymLCUQUPJRo",
+            authDomain: "deee-9ab53.firebaseapp.com",
+            projectId: "deee-9ab53",
+            storageBucket: "deee-9ab53.appspot.com",
+            messagingSenderId: "399732664479",
+            appId: "1:399732664479:web:b84ac30e8266cc51761aaa",
+            measurementId: "G-524ZPBX42B"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+        const auth = getAuth(app);
+        const storage = getStorage(app);
+
+        // DOM Elements
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const subscriptionModal = document.getElementById('subscriptionModal');
+        const closeSubscriptionModal = document.getElementById('closeSubscriptionModal');
+        const subscriptionForm = document.getElementById('subscriptionForm');
+        const cancelSubscriptionBtn = document.getElementById('cancelSubscriptionBtn');
+        const confirmSubscriptionBtn = document.getElementById('confirmSubscriptionBtn');
+        const adminLoginBtn = document.getElementById('loginBtn');
+        const mobileLoginBtn = document.getElementById('mobileLoginBtn');
+        const adminLoginModal = document.getElementById('adminLoginModal');
+        const adminLoginForm = document.getElementById('adminLoginForm');
+        const loadingOverlay = document.getElementById('loadingOverlay');
+        const floatingSupportBtn = document.getElementById('floatingSupportBtn');
+        const visitChannelBtn = document.getElementById('visitChannelBtn');
+        const toastNotification = document.getElementById('toastNotification');
+        const coursesContainer = document.getElementById('coursesContainer');
+        const upcomingSessions = document.getElementById('upcomingSessions');
+        
+        // Admin panel elements
+        const adminPanelModal = document.getElementById('adminPanelModal');
+        const closeAdminPanelBtn = document.getElementById('closeAdminPanelBtn');
+        const adminTabBtns = document.querySelectorAll('.admin-tab-btn');
+        const adminTabContents = document.querySelectorAll('.admin-tab-content');
+        const addCourseBtn = document.getElementById('addCourseBtn');
+        const addCourseModal = document.getElementById('addCourseModal');
+        const closeAddCourseModal = document.getElementById('closeAddCourseModal');
+        const cancelAddCourseBtn = document.getElementById('cancelAddCourseBtn');
+        const viewSubscriberModal = document.getElementById('viewSubscriberModal');
+        const closeViewSubscriberModal = document.getElementById('closeViewSubscriberModal');
+        const subscriberFilter = document.getElementById('subscriberFilter');
+        const exportSubscribersBtn = document.getElementById('exportSubscribersBtn');
+        const liveSessionForm = document.getElementById('liveSessionForm');
+
+        // Subscription buttons
+        const subscribeButtons = [
+            document.getElementById('subscribeBtn'),
+            document.getElementById('heroSubscribeBtn'),
+            document.getElementById('pricingSubscribeBtn'),
+            document.getElementById('finalSubscribeBtn'),
+            document.getElementById('viewAllBusinessBtn')
+        ];
+
+        // Payment method selection
+        const paymentMethods = document.querySelectorAll('.payment-method');
+        let selectedPaymentMethod = 'sadapay';
+
+        // Current user state
+        let currentUser = null;
+        let isAdmin = false;
+
+        // Initialize UI
+        function initUI() {
+            setupEventListeners();
+            checkAuthState();
+            loadCourses();
+            loadLiveSessions();
+        }
+
+        // Setup event listeners
+        function setupEventListeners() {
+            // Mobile menu toggle
+            mobileMenuBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+            
+            // Subscription buttons
+            subscribeButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    subscriptionModal.classList.remove('hidden');
+                    document.body.style.overflow = 'hidden';
+                });
+            });
+            
+            // Close subscription modal
+            closeSubscriptionModal.addEventListener('click', () => {
+                subscriptionModal.classList.add('hidden');
+                document.body.style.overflow = 'auto';
+            });
+            
+            // Cancel subscription
+            cancelSubscriptionBtn.addEventListener('click', () => {
+                subscriptionModal.classList.add('hidden');
+                document.body.style.overflow = 'auto';
+            });
+            
+            // Payment method selection
+            paymentMethods.forEach(method => {
+                method.addEventListener('click', () => {
+                    paymentMethods.forEach(m => m.classList.remove('active'));
+                    method.classList.add('active');
+                    selectedPaymentMethod = method.dataset.method;
+                    document.getElementById('subPaymentMethod').value = selectedPaymentMethod;
+                });
+            });
+            
+            // Subscription form submission
+            subscriptionForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                
+                const name = document.getElementById('subName').value.trim();
+                const contact = document.getElementById('subContact').value.trim();
+                const paymentMethod = document.getElementById('subPaymentMethod').value;
+                const screenshotFile = document.getElementById('subScreenshot').files[0];
+                
+                if (!name || !contact || !paymentMethod || !screenshotFile) {
+                    showToast('Please fill all fields and upload payment screenshot', 'error');
+                    return;
                 }
                 
-                // Setup event listeners
-                function setupEventListeners() {
-                    // Mobile menu toggle
-                    mobileMenuBtn.addEventListener('click', () => {
-                        mobileMenu.classList.toggle('hidden');
+                try {
+                    // Show loading
+                    loadingOverlay.classList.remove('hidden');
+                    
+                    // Upload screenshot to Firebase Storage
+                    const storageRef = ref(storage, `payment-screenshots/${Date.now()}-${screenshotFile.name}`);
+                    await uploadBytes(storageRef, screenshotFile);
+                    const screenshotUrl = await getDownloadURL(storageRef);
+                    
+                    // Save subscriber data to Firestore
+                    await addDoc(collection(db, 'subscribers'), {
+                        name,
+                        contact,
+                        paymentMethod,
+                        screenshotUrl,
+                        status: 'pending',
+                        subscriptionType: '3_months',
+                        subscriptionStart: new Date(),
+                        subscriptionEnd: new Date(new Date().setMonth(new Date().getMonth() + 3)),
+                        createdAt: new Date(),
+                        verifiedAt: null
                     });
                     
-                    // Subscription buttons
-                    subscribeButtons.forEach(button => {
-                        button.addEventListener('click', () => {
-                            subscriptionModal.classList.remove('hidden');
+                    // Hide loading
+                    loadingOverlay.classList.add('hidden');
+                    
+                    // Show success message
+                    showToast('Subscription submitted successfully! Admin will verify your payment shortly.', 'success');
+                    
+                    // Reset form
+                    subscriptionForm.reset();
+                    subscriptionModal.classList.add('hidden');
+                    document.body.style.overflow = 'auto';
+                } catch (error) {
+                    console.error('Error submitting subscription:', error);
+                    loadingOverlay.classList.add('hidden');
+                    showToast('Error submitting subscription. Please try again.', 'error');
+                }
+            });
+            
+            // Admin login buttons
+            [adminLoginBtn, mobileLoginBtn].forEach(button => {
+                button.addEventListener('click', () => {
+                    if (isAdmin) {
+                        logout();
+                    } else {
+                        adminLoginModal.classList.remove('hidden');
+                        document.body.style.overflow = 'hidden';
+                    }
+                });
+            });
+            
+            // Admin login form
+            adminLoginForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                
+                const email = document.getElementById('adminEmail').value;
+                const password = document.getElementById('adminPassword').value;
+                
+                try {
+                    loadingOverlay.classList.remove('hidden');
+                    const userCredential = await signInWithEmailAndPassword(auth, email, password);
+                    currentUser = userCredential.user;
+                    isAdmin = true;
+                    
+                    // Hide login modal
+                    adminLoginModal.classList.add('hidden');
+                    loadingOverlay.classList.add('hidden');
+                    
+                    // Update UI for admin
+                    document.getElementById('loginBtn').textContent = 'Logout';
+                    document.getElementById('mobileLoginBtn').textContent = 'Logout';
+                    showToast('Admin login successful', 'success');
+                } catch (error) {
+                    console.error('Login error:', error);
+                    loadingOverlay.classList.add('hidden');
+                    document.getElementById('adminLoginError').classList.remove('hidden');
+                    document.getElementById('adminLoginError').textContent = 'Invalid email or password';
+                }
+            });
+
+            // Admin panel close button
+            closeAdminPanelBtn.addEventListener('click', () => {
+                adminPanelModal.classList.add('hidden');
+                document.body.style.overflow = 'auto';
+            });
+
+            // Admin tab switching
+            adminTabBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const tabId = btn.dataset.tab;
+                    
+                    // Update active tab button
+                    adminTabBtns.forEach(b => b.classList.remove('bg-primary-100', 'text-primary-700'));
+                    btn.classList.add('bg-primary-100', 'text-primary-700');
+                    
+                    // Show selected tab content
+                    adminTabContents.forEach(content => content.classList.add('hidden'));
+                    document.getElementById(`${tabId}-tab`).classList.remove('hidden');
+                    
+                    // Load data for the tab if needed
+                    if (tabId === 'subscribers') {
+                        loadSubscribers();
+                    } else if (tabId === 'courses') {
+                        loadAdminCourses();
+                    } else if (tabId === 'live') {
+                        loadLiveSettings();
+                    } else if (tabId === 'dashboard') {
+                        loadAdminDashboard();
+                    }
+                });
+            });
+
+            // Add course button
+            addCourseBtn.addEventListener('click', () => {
+                addCourseModal.classList.remove('hidden');
+            });
+
+            closeAddCourseModal.addEventListener('click', () => {
+                addCourseModal.classList.add('hidden');
+            });
+
+            cancelAddCourseBtn.addEventListener('click', () => {
+                addCourseModal.classList.add('hidden');
+            });
+
+            // View subscriber modal
+            closeViewSubscriberModal.addEventListener('click', () => {
+                viewSubscriberModal.classList.add('hidden');
+            });
+
+            // Subscriber filter
+            subscriberFilter.addEventListener('change', () => {
+                loadSubscribers();
+            });
+
+            // Export subscribers
+            exportSubscribersBtn.addEventListener('click', () => {
+                showToast('Export feature coming soon', 'warning');
+            });
+
+            // Live session form
+            liveSessionForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                
+                const url = document.getElementById('youtubeLiveUrl').value.trim();
+                const time = document.getElementById('nextSessionTime').value;
+                const topic = document.getElementById('sessionTopic').value.trim();
+                
+                try {
+                    loadingOverlay.classList.remove('hidden');
+                    
+                    // Update live session in Firestore
+                    const liveSessionRef = doc(db, 'settings', 'liveSession');
+                    await updateDoc(liveSessionRef, {
+                        url,
+                        nextSessionTime: time ? new Date(time) : null,
+                        topic: topic || null,
+                        updatedAt: new Date()
+                    });
+                    
+                    loadingOverlay.classList.add('hidden');
+                    showToast('Live session updated successfully', 'success');
+                    loadLiveSessions(); // Refresh public live sessions display
+                } catch (error) {
+                    console.error('Error updating live session:', error);
+                    loadingOverlay.classList.add('hidden');
+                    showToast('Error updating live session', 'error');
+                }
+            });
+
+            // Add course form
+            document.getElementById('addCourseForm').addEventListener('submit', async (e) => {
+                e.preventDefault();
+                
+                const title = document.getElementById('courseTitle').value.trim();
+                const description = document.getElementById('courseDescription').value.trim();
+                const image = document.getElementById('courseImage').value.trim();
+                const link = document.getElementById('courseLink').value.trim();
+                const isFree = document.getElementById('courseIsFree').checked;
+                
+                if (!title || !description || !link) {
+                    showToast('Please fill all required fields', 'error');
+                    return;
+                }
+                
+                try {
+                    loadingOverlay.classList.remove('hidden');
+                    
+                    await addDoc(collection(db, 'courses'), {
+                        title,
+                        description,
+                        image: image || 'https://images.unsplash.com/photo-1497633762265-9d179a990aa6?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80',
+                        link,
+                        isFree,
+                        createdAt: new Date()
+                    });
+                    
+                    loadingOverlay.classList.add('hidden');
+                    showToast('Course added successfully', 'success');
+                    addCourseForm.reset();
+                    addCourseModal.classList.add('hidden');
+                    loadAdminCourses();
+                    loadCourses(); // Refresh public courses list
+                } catch (error) {
+                    console.error('Error adding course:', error);
+                    loadingOverlay.classList.add('hidden');
+                    showToast('Error adding course', 'error');
+                }
+            });
+                    
+            // Visit YouTube channel
+            visitChannelBtn.addEventListener('click', () => {
+                window.open('https://youtube.com/@msarim2122', '_blank');
+            });
+            
+            // Floating support button
+            floatingSupportBtn.addEventListener('click', () => {
+                window.open('https://wa.me/923326942269', '_blank');
+            });
+        }
+
+        // Check authentication state
+        function checkAuthState() {
+            auth.onAuthStateChanged((user) => {
+                if (user) {
+                    currentUser = user;
+                    isAdmin = true;
+                    document.getElementById('loginBtn').textContent = 'Logout';
+                    document.getElementById('mobileLoginBtn').textContent = 'Logout';
+                    
+                    // Update admin email display
+                    document.getElementById('adminEmailDisplay').textContent = user.email;
+                    
+                    // Show admin panel when login button is clicked
+                    [adminLoginBtn, mobileLoginBtn].forEach(btn => {
+                        btn.onclick = () => {
+                            adminPanelModal.classList.remove('hidden');
                             document.body.style.overflow = 'hidden';
-                        });
+                            loadAdminDashboard();
+                        };
                     });
+                } else {
+                    currentUser = null;
+                    isAdmin = false;
+                    document.getElementById('loginBtn').textContent = 'Login';
+                    document.getElementById('mobileLoginBtn').textContent = 'Login';
                     
-                    // Cancel subscription
-                    cancelSubscriptionBtn.addEventListener('click', () => {
-                        subscriptionModal.classList.add('hidden');
-                        document.body.style.overflow = 'auto';
-                    });
-                    
-                    // Subscription form submission
-                    subscriptionForm.addEventListener('submit', (e) => {
-                        e.preventDefault();
-                        
-                        // Show loading
-                        loadingOverlay.classList.remove('hidden');
-                        
-                        // Simulate API call
-                        setTimeout(() => {
-                            loadingOverlay.classList.add('hidden');
-                            subscriptionModal.classList.add('hidden');
-                            document.body.style.overflow = 'auto';
-                            
-                            // Show success message
-                            alert('Your subscription details have been submitted! The admin will verify your payment and grant you access shortly.');
-                            
-                            // Reset form
-                            subscriptionForm.reset();
-                        }, 2000);
-                    });
-                    
-                    // Admin login buttons
-                    [adminLoginBtn, mobileLoginBtn].forEach(button => {
-                        button.addEventListener('click', () => {
+                    // Set login button back to open login modal
+                    [adminLoginBtn, mobileLoginBtn].forEach(btn => {
+                        btn.onclick = () => {
                             adminLoginModal.classList.remove('hidden');
                             document.body.style.overflow = 'hidden';
-                        });
-                    });
-                    
-                    // Admin login form
-                    adminLoginForm.addEventListener('submit', (e) => {
-                        e.preventDefault();
-                        
-                        const email = document.getElementById('adminEmail').value;
-                        const password = document.getElementById('adminPassword').value;
-                        
-                        // Simple validation (in real app, use Firebase Auth)
-                        if (email === 'admin@onlinecoursesfree.com' && password === 'msarim7898') {
-                            adminLoginModal.classList.add('hidden');
-                            adminPanelModal.classList.remove('hidden');
-                        } else {
-                            document.getElementById('adminLoginError').classList.remove('hidden');
-                            document.getElementById('adminLoginError').textContent = 'Invalid email or password';
-                        }
-                    });
-                    
-                    // Close admin panel
-                    closeAdminPanelBtn.addEventListener('click', () => {
-                        adminPanelModal.classList.add('hidden');
-                        document.body.style.overflow = 'auto';
-                    });
-                    
-                    // Visit YouTube channel
-                    visitChannelBtn.addEventListener('click', () => {
-                        window.open('https://youtube.com/@msarim2122', '_blank');
-                    });
-                    
-                    // Floating support button
-                    floatingSupportBtn.addEventListener('click', () => {
-                        window.open('https://wa.me/923326942269', '_blank');
+                        };
                     });
                 }
-                
-                // Initialize the app
-                initUI();
             });
-        </script>
-    </body>
+        }
+
+        // Logout function
+        async function logout() {
+            try {
+                await signOut(auth);
+                showToast('Logged out successfully', 'success');
+            } catch (error) {
+                console.error('Logout error:', error);
+                showToast('Error logging out', 'error');
+            }
+        }
+
+        // Load courses from Firestore
+        async function loadCourses() {
+            try {
+                const querySnapshot = await getDocs(collection(db, 'courses'));
+                coursesContainer.innerHTML = '';
+                
+                if (querySnapshot.empty) {
+                    coursesContainer.innerHTML = '<div class="col-span-3 text-center text-gray-500">No courses available yet</div>';
+                    return;
+                }
+                
+                querySnapshot.forEach((doc) => {
+                    const course = doc.data();
+                    const isFree = course.isFree || false;
+                    
+                    const courseElement = document.createElement('div');
+                    courseElement.className = 'course-card animate-fade-in relative';
+                    courseElement.innerHTML = `
+                        ${isFree ? '<span class="free-badge">FREE</span>' : '<span class="premium-badge">PREMIUM</span>'}
+                        <img src="${course.image || 'https://images.unsplash.com/photo-1497633762265-9d179a990aa6?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80'}" alt="${course.title}" class="course-image">
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-gray-900 mb-2">${course.title}</h3>
+                            <p class="text-gray-600 mb-4">${course.description}</p>
+                            <a href="${course.link}" target="_blank" class="text-primary-600 font-medium hover:text-primary-800 transition-colors inline-flex items-center">
+                                ${isFree ? 'Start Course' : 'Unlock Course'} <i class="fas ${isFree ? 'fa-arrow-right' : 'fa-lock'} ml-2"></i>
+                            </a>
+                        </div>
+                    `;
+                    coursesContainer.appendChild(courseElement);
+                });
+            } catch (error) {
+                console.error('Error loading courses:', error);
+                coursesContainer.innerHTML = '<div class="col-span-3 text-center text-gray-500">Error loading courses</div>';
+            }
+        }
+
+        // Load live sessions from Firestore
+        async function loadLiveSessions() {
+            try {
+                const docRef = doc(db, 'settings', 'liveSession');
+                const docSnap = await getDoc(docRef);
+                
+                if (docSnap.exists()) {
+                    const data = docSnap.data();
+                    
+                    // Update upcoming sessions
+                    upcomingSessions.innerHTML = '';
+                    if (data.nextSessionTime && data.topic) {
+                        const sessionElement = document.createElement('div');
+                        sessionElement.className = 'bg-gray-800 p-4 rounded-lg';
+                        sessionElement.innerHTML = `
+                            <div class="flex items-start">
+                                <div class="bg-primary-500 text-white text-xs font-bold px-2 py-1 rounded mr-3">UPCOMING</div>
+                                <div>
+                                    <h4 class="font-semibold">${data.topic}</h4>
+                                    <p class="text-sm text-gray-400">${new Date(data.nextSessionTime.seconds * 1000).toLocaleString()}</p>
+                                </div>
+                            </div>
+                        `;
+                        upcomingSessions.appendChild(sessionElement);
+                    }
+                }
+            } catch (error) {
+                console.error('Error loading live sessions:', error);
+            }
+        }
+
+        // Load admin dashboard
+        async function loadAdminDashboard() {
+            try {
+                loadingOverlay.classList.remove('hidden');
+                
+                // Load counts
+                const subscribersCount = await getSubscribersCount();
+                const activeSubscribersCount = await getActiveSubscribersCount();
+                const coursesCount = await getCoursesCount();
+                
+                document.getElementById('totalSubscribers').textContent = subscribersCount;
+                document.getElementById('activeSubscribers').textContent = activeSubscribersCount;
+                document.getElementById('totalCourses').textContent = coursesCount;
+                
+                // Load recent subscribers
+                await loadRecentSubscribers();
+                
+                loadingOverlay.classList.add('hidden');
+            } catch (error) {
+                console.error('Error loading admin dashboard:', error);
+                loadingOverlay.classList.add('hidden');
+                showToast('Error loading dashboard data', 'error');
+            }
+        }
+
+        // Get total subscribers count
+        async function getSubscribersCount() {
+            const querySnapshot = await getDocs(collection(db, 'subscribers'));
+            return querySnapshot.size;
+        }
+
+        // Get active subscribers count
+        async function getActiveSubscribersCount() {
+            const q = query(collection(db, 'subscribers'), where("status", "==", "verified"));
+            const querySnapshot = await getDocs(q);
+            return querySnapshot.size;
+        }
+
+        // Get courses count
+        async function getCoursesCount() {
+            const querySnapshot = await getDocs(collection(db, 'courses'));
+            return querySnapshot.size;
+        }
+
+        // Load recent subscribers
+        async function loadRecentSubscribers() {
+            const q = query(collection(db, 'subscribers'), orderBy("createdAt", "desc"), limit(5));
+            const querySnapshot = await getDocs(q);
+            
+            const recentSubscribers = document.getElementById('recentSubscribers');
+            recentSubscribers.innerHTML = '';
+            
+            if (querySnapshot.empty) {
+                recentSubscribers.innerHTML = '<tr><td colspan="4" class="px-6 py-4 text-center text-gray-500">No subscribers yet</td></tr>';
+                return;
+            }
+            
+            querySnapshot.forEach(doc => {
+                const subscriber = doc.data();
+                const row = document.createElement('tr');
+                row.className = 'hover:bg-gray-50';
+                row.innerHTML = `
+                    <td class="px-6 py-4 whitespace-nowrap">${subscriber.name}</td>
+                    <td class="px-6 py-4 whitespace-nowrap">${subscriber.contact}</td>
+                    <td class="px-6 py-4 whitespace-nowrap">
+                        <span class="status-badge ${subscriber.status === 'verified' ? 'status-verified' : 'status-pending'}">
+                            ${subscriber.status}
+                        </span>
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap">${subscriber.createdAt.toDate().toLocaleDateString()}</td>
+                `;
+                recentSubscribers.appendChild(row);
+            });
+        }
+
+        // Load subscribers for admin
+        async function loadSubscribers() {
+            try {
+                loadingOverlay.classList.remove('hidden');
+                
+                const filter = subscriberFilter.value;
+                let q;
+                
+                if (filter === 'all') {
+                    q = query(collection(db, 'subscribers'), orderBy("createdAt", "desc"));
+                } else if (filter === 'active') {
+                    q = query(collection(db, 'subscribers'), 
+                        where("status", "==", "verified"),
+                        orderBy("createdAt", "desc"));
+                } else if (filter === 'pending') {
+                    q = query(collection(db, 'subscribers'), 
+                        where("status", "==", "pending"),
+                        orderBy("createdAt", "desc"));
+                } else if (filter === 'expired') {
+                    q = query(collection(db, 'subscribers'), 
+                        where("status", "==", "verified"),
+                        where("subscriptionEnd", "<", new Date()),
+                        orderBy("subscriptionEnd", "desc"));
+                }
+                
+                const querySnapshot = await getDocs(q);
+                const subscribersList = document.getElementById('adminSubscribersList');
+                subscribersList.innerHTML = '';
+                
+                if (querySnapshot.empty) {
+                    subscribersList.innerHTML = '<tr><td colspan="6" class="px-6 py-4 text-center text-gray-500">No subscribers found</td></tr>';
+                    loadingOverlay.classList.add('hidden');
+                    return;
+                }
+                
+                querySnapshot.forEach(doc => {
+                    const subscriber = doc.data();
+                    const isExpired = subscriber.status === 'verified' && 
+                                     subscriber.subscriptionEnd && 
+                                     subscriber.subscriptionEnd.toDate() < new Date();
+                    
+                    const row = document.createElement('tr');
+                    row.className = 'hover:bg-gray-50';
+                    row.innerHTML = `
+                        <td class="px-6 py-4 whitespace-nowrap">${subscriber.name}</td>
+                        <td class="px-6 py-4 whitespace-nowrap">${subscriber.contact}</td>
+                        <td class="px-6 py-4 whitespace-nowrap">${subscriber.paymentMethod}</td>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            <span class="status-badge ${isExpired ? 'status-expired' : subscriber.status === 'verified' ? 'status-verified' : 'status-pending'}">
+                                ${isExpired ? 'expired' : subscriber.status}
+                            </span>
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap">${subscriber.subscriptionEnd ? subscriber.subscriptionEnd.toDate().toLocaleDateString() : 'N/A'}</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                            <button data-id="${doc.id}" class="view-subscriber text-primary-600 hover:text-primary-900 mr-3">View</button>
+                        </td>
+                    `;
+                    subscribersList.appendChild(row);
+                });
+                
+                // Add event listeners to view buttons
+                document.querySelectorAll('.view-subscriber').forEach(btn => {
+                    btn.addEventListener('click', async (e) => {
+                        const id = e.target.dataset.id;
+                        await viewSubscriberDetails(id);
+                    });
+                });
+                
+                loadingOverlay.classList.add('hidden');
+            } catch (error) {
+                console.error('Error loading subscribers:', error);
+                loadingOverlay.classList.add('hidden');
+                showToast('Error loading subscribers', 'error');
+            }
+        }
+
+        // View subscriber details
+        async function viewSubscriberDetails(subscriberId) {
+            try {
+                loadingOverlay.classList.remove('hidden');
+                
+                const docRef = doc(db, 'subscribers', subscriberId);
+                const docSnap = await getDoc(docRef);
+                
+                if (docSnap.exists()) {
+                    const subscriber = docSnap.data();
+                    const isExpired = subscriber.status === 'verified' && 
+                                     subscriber.subscriptionEnd && 
+                                     subscriber.subscriptionEnd.toDate() < new Date();
+                    
+                    // Update modal content
+                    document.getElementById('subscriberName').textContent = subscriber.name;
+                    document.getElementById('subscriberContact').textContent = subscriber.contact;
+                                        document.getElementById('subscriberPaymentMethod').textContent = subscriber.paymentMethod;
+                    
+                    const statusBadge = document.getElementById('subscriberStatusBadge');
+                    statusBadge.textContent = isExpired ? 'expired' : subscriber.status;
+                    statusBadge.className = `status-badge ${isExpired ? 'status-expired' : subscriber.status === 'verified' ? 'status-verified' : 'status-pending'}`;
+                    
+                    const startDate = subscriber.subscriptionStart ? subscriber.subscriptionStart.toDate().toLocaleDateString() : 'N/A';
+                    const endDate = subscriber.subscriptionEnd ? subscriber.subscriptionEnd.toDate().toLocaleDateString() : 'N/A';
+                    document.getElementById('subscriberPeriod').textContent = `${startDate} to ${endDate}`;
+                    
+                    // Show payment screenshot if available
+                    if (subscriber.screenshotUrl) {
+                        document.getElementById('paymentScreenshotContainer').classList.remove('hidden');
+                        document.getElementById('paymentScreenshotImg').src = subscriber.screenshotUrl;
+                    } else {
+                        document.getElementById('paymentScreenshotContainer').classList.add('hidden');
+                    }
+                    
+                    // Update action buttons
+                    const actionButtons = document.getElementById('subscriberActionButtons');
+                    if (subscriber.status === 'verified' || isExpired) {
+                        actionButtons.innerHTML = `
+                            <button id="extendSubscriptionBtn" class="flex-1 bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-lg">
+                                Extend Subscription
+                            </button>
+                        `;
+                        
+                        document.getElementById('extendSubscriptionBtn').addEventListener('click', () => {
+                            extendSubscription(subscriberId);
+                        });
+                    } else {
+                        actionButtons.innerHTML = `
+                            <button id="verifySubscriberBtn" class="flex-1 bg-green-600 hover:bg-green-700 text-white py-2 rounded-lg">
+                                Verify
+                            </button>
+                            <button id="rejectSubscriberBtn" class="flex-1 bg-red-600 hover:bg-red-700 text-white py-2 rounded-lg">
+                                Reject
+                            </button>
+                        `;
+                        
+                        document.getElementById('verifySubscriberBtn').addEventListener('click', () => {
+                            verifySubscriber(subscriberId);
+                        });
+                        
+                        document.getElementById('rejectSubscriberBtn').addEventListener('click', () => {
+                            rejectSubscriber(subscriberId);
+                        });
+                    }
+                    
+                    viewSubscriberModal.classList.remove('hidden');
+                } else {
+                    showToast('Subscriber not found', 'error');
+                }
+                
+                loadingOverlay.classList.add('hidden');
+            } catch (error) {
+                console.error('Error viewing subscriber:', error);
+                loadingOverlay.classList.add('hidden');
+                showToast('Error loading subscriber details', 'error');
+            }
+        }
+
+        // Verify subscriber
+        async function verifySubscriber(subscriberId) {
+            try {
+                loadingOverlay.classList.remove('hidden');
+                
+                const docRef = doc(db, 'subscribers', subscriberId);
+                const startDate = new Date();
+                const endDate = new Date();
+                endDate.setMonth(endDate.getMonth() + 3); // 3 months subscription
+                
+                await updateDoc(docRef, {
+                    status: 'verified',
+                    verifiedAt: new Date(),
+                    subscriptionStart: startDate,
+                    subscriptionEnd: endDate
+                });
+                
+                showToast('Subscriber verified successfully', 'success');
+                viewSubscriberModal.classList.add('hidden');
+                loadSubscribers();
+                loadAdminDashboard();
+                
+                loadingOverlay.classList.add('hidden');
+            } catch (error) {
+                console.error('Error verifying subscriber:', error);
+                loadingOverlay.classList.add('hidden');
+                showToast('Error verifying subscriber', 'error');
+            }
+        }
+
+        // Reject subscriber
+        async function rejectSubscriber(subscriberId) {
+            if (confirm('Are you sure you want to reject this subscriber?')) {
+                try {
+                    loadingOverlay.classList.remove('hidden');
+                    
+                    const docRef = doc(db, 'subscribers', subscriberId);
+                    await updateDoc(docRef, {
+                        status: 'rejected',
+                        rejectedAt: new Date()
+                    });
+                    
+                    showToast('Subscriber rejected', 'success');
+                    viewSubscriberModal.classList.add('hidden');
+                    loadSubscribers();
+                    loadAdminDashboard();
+                    
+                    loadingOverlay.classList.add('hidden');
+                } catch (error) {
+                    console.error('Error rejecting subscriber:', error);
+                    loadingOverlay.classList.add('hidden');
+                    showToast('Error rejecting subscriber', 'error');
+                }
+            }
+        }
+
+        // Extend subscription
+        async function extendSubscription(subscriberId) {
+            const extensionMonths = prompt('Enter number of months to extend subscription:', '3');
+            if (extensionMonths && !isNaN(extensionMonths)) {
+                try {
+                    loadingOverlay.classList.remove('hidden');
+                    
+                    const docRef = doc(db, 'subscribers', subscriberId);
+                    const docSnap = await getDoc(docRef);
+                    
+                    if (docSnap.exists()) {
+                        const subscriber = docSnap.data();
+                        let endDate;
+                        
+                        if (subscriber.subscriptionEnd) {
+                            endDate = new Date(subscriber.subscriptionEnd.toDate());
+                        } else {
+                            endDate = new Date();
+                        }
+                        
+                        endDate.setMonth(endDate.getMonth() + parseInt(extensionMonths));
+                        
+                        await updateDoc(docRef, {
+                            subscriptionEnd: endDate
+                        });
+                        
+                        showToast(`Subscription extended by ${extensionMonths} months`, 'success');
+                        viewSubscriberModal.classList.add('hidden');
+                        loadSubscribers();
+                        loadAdminDashboard();
+                    }
+                    
+                    loadingOverlay.classList.add('hidden');
+                } catch (error) {
+                    console.error('Error extending subscription:', error);
+                    loadingOverlay.classList.add('hidden');
+                    showToast('Error extending subscription', 'error');
+                }
+            }
+        }
+
+        // Load admin courses
+        async function loadAdminCourses() {
+            try {
+                loadingOverlay.classList.remove('hidden');
+                
+                const querySnapshot = await getDocs(collection(db, 'courses'));
+                const coursesList = document.getElementById('adminCoursesList');
+                coursesList.innerHTML = '';
+                
+                if (querySnapshot.empty) {
+                    coursesList.innerHTML = '<tr><td colspan="3" class="px-6 py-4 text-center text-gray-500">No courses added yet</td></tr>';
+                    loadingOverlay.classList.add('hidden');
+                    return;
+                }
+                
+                querySnapshot.forEach(doc => {
+                    const course = doc.data();
+                    const row = document.createElement('tr');
+                    row.className = 'hover:bg-gray-50';
+                    row.innerHTML = `
+                        <td class="px-6 py-4">${course.title}</td>
+                        <td class="px-6 py-4">
+                            <span class="status-badge ${course.isFree ? 'status-verified' : 'status-pending'}">
+                                ${course.isFree ? 'Free' : 'Premium'}
+                            </span>
+                        </td>
+                        <td class="px-6 py-4 text-right text-sm font-medium">
+                            <button data-id="${doc.id}" class="edit-course text-primary-600 hover:text-primary-900 mr-3">Edit</button>
+                            <button data-id="${doc.id}" class="delete-course text-red-600 hover:text-red-900">Delete</button>
+                        </td>
+                    `;
+                    coursesList.appendChild(row);
+                });
+                
+                // Add event listeners to buttons
+                document.querySelectorAll('.edit-course').forEach(btn => {
+                    btn.addEventListener('click', async (e) => {
+                        const id = e.target.dataset.id;
+                        await editCourse(id);
+                    });
+                });
+                
+                document.querySelectorAll('.delete-course').forEach(btn => {
+                    btn.addEventListener('click', async (e) => {
+                        const id = e.target.dataset.id;
+                        await deleteCourse(id);
+                    });
+                });
+                
+                loadingOverlay.classList.add('hidden');
+            } catch (error) {
+                console.error('Error loading courses:', error);
+                loadingOverlay.classList.add('hidden');
+                showToast('Error loading courses', 'error');
+            }
+        }
+
+        // Edit course (placeholder - would need a separate modal)
+        async function editCourse(courseId) {
+            showToast('Edit feature coming soon', 'warning');
+        }
+
+        // Delete course
+        async function deleteCourse(courseId) {
+            if (confirm('Are you sure you want to delete this course?')) {
+                try {
+                    loadingOverlay.classList.remove('hidden');
+                    
+                    await deleteDoc(doc(db, 'courses', courseId));
+                    
+                    showToast('Course deleted successfully', 'success');
+                    loadAdminCourses();
+                    loadCourses(); // Refresh public courses list
+                    
+                    loadingOverlay.classList.add('hidden');
+                } catch (error) {
+                    console.error('Error deleting course:', error);
+                    loadingOverlay.classList.add('hidden');
+                    showToast('Error deleting course', 'error');
+                }
+            }
+        }
+
+        // Load live settings
+        async function loadLiveSettings() {
+            try {
+                loadingOverlay.classList.remove('hidden');
+                
+                const docRef = doc(db, 'settings', 'liveSession');
+                const docSnap = await getDoc(docRef);
+                
+                if (docSnap.exists()) {
+                    const data = docSnap.data();
+                    document.getElementById('youtubeLiveUrl').value = data.url || '';
+                    
+                    if (data.nextSessionTime) {
+                        const date = new Date(data.nextSessionTime.seconds * 1000);
+                        const isoString = date.toISOString().slice(0, 16);
+                        document.getElementById('nextSessionTime').value = isoString;
+                    }
+                    
+                    document.getElementById('sessionTopic').value = data.topic || '';
+                }
+                
+                loadingOverlay.classList.add('hidden');
+            } catch (error) {
+                console.error('Error loading live settings:', error);
+                loadingOverlay.classList.add('hidden');
+                showToast('Error loading live session settings', 'error');
+            }
+        }
+
+        // Show toast notification
+        function showToast(message, type = 'success') {
+            toastNotification.textContent = message;
+            toastNotification.className = `toast ${type}`;
+            toastNotification.classList.remove('hidden');
+            
+            setTimeout(() => {
+                toastNotification.classList.add('hidden');
+            }, 3000);
+        }
+
+        // Initialize the app
+        initUI();
+
+        // Real-time listeners
+        onSnapshot(collection(db, 'courses'), () => {
+            loadCourses();
+        });
+
+        onSnapshot(doc(db, 'settings', 'liveSession'), () => {
+            loadLiveSessions();
+        });
+    </script>
+</body>
 </html>
+                   
