@@ -1,35 +1,133 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ONLINE COURSES FREE</title>
-    <!-- Tailwind CSS CDN -->
+    <title>ONLINE COURSES FREE | Premium Learning Platform</title>
+    
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#2b5797">
+    <meta name="theme-color" content="#ffffff">
+    
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            200: '#bae6fd',
+                            300: '#7dd3fc',
+                            400: '#38bdf8',
+                            500: '#0ea5e9',
+                            600: '#0284c7',
+                            700: '#0369a1',
+                            800: '#075985',
+                            900: '#0c4a6e',
+                        },
+                        secondary: {
+                            50: '#fdf2f8',
+                            100: '#fce7f3',
+                            200: '#fbcfe8',
+                            300: '#f9a8d4',
+                            400: '#f472b6',
+                            500: '#ec4899',
+                            600: '#db2777',
+                            700: '#be185d',
+                            800: '#9d174d',
+                            900: '#831843',
+                        },
+                        dark: '#1e293b',
+                        darker: '#0f172a',
+                    },
+                    fontFamily: {
+                        sans: ['Poppins', 'sans-serif'],
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 0.5s ease-in-out',
+                        'slide-up': 'slideUp 0.5s ease-out',
+                        'pulse-slow': 'pulse 3s infinite',
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' },
+                        },
+                        slideUp: {
+                            '0%': { transform: 'translateY(20px)', opacity: '0' },
+                            '100%': { transform: 'translateY(0)', opacity: '1' },
+                        },
+                    },
+                }
+            }
+        }
+    </script>
+    
     <style>
+        :root {
+            --header-height: 80px;
+        }
+        
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: #f0f4f8; /* Light background for premium feel */
-            color: #333;
-            line-height: 1.6;
+            font-family: 'Poppins', sans-serif;
+            background-color: #f8fafc;
+            color: #1e293b;
+            overflow-x: hidden;
         }
+        
+        .gradient-text {
+            background: linear-gradient(90deg, #ec4899 0%, #7c3aed 50%, #0ea5e9 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
         .gradient-bg {
-            background: linear-gradient(to right, #6a11cb 0%, #2575fc 100%);
+            background: linear-gradient(90deg, #ec4899 0%, #7c3aed 50%, #0ea5e9 100%);
         }
+        
         .btn-primary {
-            @apply inline-block px-8 py-3 rounded-full text-white font-semibold transition-all duration-300 ease-in-out;
-            background: linear-gradient(to right, #6a11cb 0%, #2575fc 100%);
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            @apply inline-flex items-center justify-center px-8 py-3 rounded-full text-white font-semibold transition-all duration-300 ease-in-out;
+            background: linear-gradient(90deg, #ec4899 0%, #7c3aed 50%, #0ea5e9 100%);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            background-size: 200% auto;
         }
+        
         .btn-primary:hover {
             transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+            background-position: right center;
         }
+        
         .card {
-            @apply bg-white p-6 rounded-2xl shadow-lg transition-all duration-300 ease-in-out hover:shadow-xl;
+            @apply bg-white p-6 rounded-xl shadow-md transition-all duration-300 ease-in-out hover:shadow-lg border border-gray-100;
         }
-        /* Custom modal styles */
+        
+        .course-card {
+            @apply card overflow-hidden transform hover:-translate-y-1;
+        }
+        
+        .course-card:hover .course-image {
+            transform: scale(1.05);
+        }
+        
+        .course-image {
+            @apply w-full h-48 object-cover transition-transform duration-500;
+        }
+        
         .modal-overlay {
             position: fixed;
             top: 0;
@@ -41,517 +139,1010 @@
             justify-content: center;
             align-items: center;
             z-index: 1000;
+            backdrop-filter: blur(5px);
+            animation: fadeIn 0.3s ease-out;
         }
+        
         .modal-content {
             background: white;
-            padding: 24px;
-            border-radius: 12px;
+            padding: 2rem;
+            border-radius: 1rem;
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-            max-width: 400px;
+            max-width: 500px;
             width: 90%;
-            text-align: center;
+            max-height: 90vh;
+            overflow-y: auto;
+            animation: slideUp 0.3s ease-out;
         }
-        .modal-input {
-            @apply w-full p-3 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 text-gray-800 mb-4;
+        
+        .loading-spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid rgba(0, 0, 0, 0.1);
+            border-left-color: #0ea5e9;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
         }
-        .error-message {
-            @apply text-red-600 text-sm mt-2;
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        .live-badge {
+            animation: pulse-slow 2s infinite;
+        }
+        
+        .nav-link {
+            position: relative;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #ec4899 0%, #7c3aed 50%, #0ea5e9 100%);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .nav-link.active::after {
+            width: 100%;
+        }
+        
+        .payment-method {
+            transition: all 0.3s ease;
+        }
+        
+        .payment-method:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .payment-method.active {
+            border-color: #0ea5e9;
+            box-shadow: 0 0 0 2px rgba(14, 165, 233, 0.3);
+        }
+        
+        .floating-button {
+            box-shadow: 0 10px 25px rgba(14, 165, 233, 0.3);
+        }
+        
+        .skeleton {
+            background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+            background-size: 200% 100%;
+            animation: shimmer 1.5s infinite;
+        }
+        
+        @keyframes shimmer {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
         }
     </style>
 </head>
-<body class="min-h-screen flex flex-col justify-center items-center p-4">
-
-    <!-- Header Section -->
-    <header class="w-full max-w-4xl mx-auto text-center py-10">
-        <h1 class="text-5xl font-extrabold text-gray-900 leading-tight mb-4">
-            <span class="gradient-bg bg-clip-text text-transparent">ONLINE COURSES FREE</span>
-        </h1>
-        <p class="text-xl text-gray-600">Unlock a world of knowledge with our premium courses. Subscribe now!</p>
+<body class="min-h-screen flex flex-col">
+    <!-- Header -->
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <div class="w-10 h-10 rounded-full gradient-bg flex items-center justify-center text-white font-bold">
+                    OCF
+                </div>
+                <h1 class="text-2xl font-bold gradient-text">ONLINE COURSES FREE</h1>
+            </div>
+            
+            <nav class="hidden md:flex items-center space-x-8">
+                <a href="#home" class="nav-link active text-gray-700 font-medium">Home</a>
+                <a href="#courses" class="nav-link text-gray-700 font-medium">Courses</a>
+                <a href="#pricing" class="nav-link text-gray-700 font-medium">Pricing</a>
+                <a href="#live" class="nav-link text-gray-700 font-medium">Live Sessions</a>
+                <a href="#contact" class="nav-link text-gray-700 font-medium">Contact</a>
+            </nav>
+            
+            <div class="flex items-center space-x-4">
+                <button id="loginBtn" class="hidden md:block px-4 py-2 text-primary-600 font-medium hover:text-primary-800 transition-colors">
+                    Login
+                </button>
+                <button id="subscribeBtn" class="btn-primary text-sm md:text-base">
+                    Subscribe Now
+                </button>
+                <button id="mobileMenuBtn" class="md:hidden text-gray-700">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="hidden md:hidden bg-white border-t py-4 px-4">
+            <div class="flex flex-col space-y-4">
+                <a href="#home" class="nav-link active text-gray-700 font-medium">Home</a>
+                <a href="#courses" class="nav-link text-gray-700 font-medium">Courses</a>
+                <a href="#pricing" class="nav-link text-gray-700 font-medium">Pricing</a>
+                <a href="#live" class="nav-link text-gray-700 font-medium">Live Sessions</a>
+                <a href="#contact" class="nav-link text-gray-700 font-medium">Contact</a>
+                <button id="mobileLoginBtn" class="text-left px-0 py-2 text-primary-600 font-medium hover:text-primary-800 transition-colors">
+                    Login
+                </button>
+            </div>
+        </div>
     </header>
 
-    <!-- Subscription Section -->
-    <section class="w-full max-w-3xl mx-auto bg-white p-8 md:p-10 rounded-2xl shadow-xl mb-8 flex flex-col md:flex-row items-center justify-between">
-        <div class="md:w-2/3 text-center md:text-left mb-6 md:mb-0">
-            <h2 class="text-3xl font-bold text-gray-800 mb-4">Gain Unlimited Access!</h2>
-            <p class="text-lg text-gray-700 mb-4">
-                To access all premium courses and live sessions, you need to purchase a subscription.
-            </p>
-            <p class="text-xl font-bold text-gray-800 mb-6">
-                Subscription Fee:
-                <span class="gradient-bg bg-clip-text text-transparent">150 PKR</span> (SadaPay) or
-                <span class="gradient-bg bg-clip-text text-transparent">1 USD</span> (Binance)
-            </p>
-            <div class="mb-4">
-                <h3 class="text-xl font-semibold text-gray-800 mb-2">Payment Details:</h3>
-                <ul class="list-disc list-inside text-gray-700 space-y-1">
-                    <li>SadaPay: <span class="font-mono">03446492768</span> (Name: Abdul RAZZAQ)</li>
-                    <li>Binance ID: <span class="font-mono">907674656</span> (Name: MSARIM21)</li>
-                </ul>
+    <!-- Hero Section -->
+    <section id="home" class="relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-r from-primary-500 to-secondary-500 opacity-10 z-0"></div>
+        <div class="container mx-auto px-4 py-20 md:py-28 relative z-10">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-10 md:mb-0 animate-fade-in">
+                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
+                        Learn <span class="gradient-text">Premium Courses</span> For Free
+                    </h1>
+                    <p class="text-lg text-gray-600 mb-8">
+                        Access high-quality courses from industry experts. Subscribe once and get lifetime access to all current and future courses.
+                    </p>
+                    <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
+                        <button id="heroSubscribeBtn" class="btn-primary px-8 py-4 text-lg">
+                            Get Started <i class="fas fa-arrow-right ml-2"></i>
+                        </button>
+                        <button id="watchDemoBtn" class="flex items-center justify-center px-8 py-4 border border-primary-500 text-primary-600 rounded-full font-semibold hover:bg-primary-50 transition-colors">
+                            <i class="fas fa-play-circle mr-2 text-xl"></i> Watch Demo
+                        </button>
+                    </div>
+                    
+                    <div class="mt-10 flex items-center">
+                        <div class="flex -space-x-2">
+                            <img src="https://randomuser.me/api/portraits/women/12.jpg" class="w-10 h-10 rounded-full border-2 border-white" alt="Student">
+                            <img src="https://randomuser.me/api/portraits/men/32.jpg" class="w-10 h-10 rounded-full border-2 border-white" alt="Student">
+                            <img src="https://randomuser.me/api/portraits/women/44.jpg" class="w-10 h-10 rounded-full border-2 border-white" alt="Student">
+                        </div>
+                        <div class="ml-4">
+                            <p class="text-sm text-gray-600">Join <span class="font-bold text-gray-800">10,000+</span> students</p>
+                            <div class="flex items-center">
+                                <div class="flex">
+                                    <i class="fas fa-star text-yellow-400"></i>
+                                    <i class="fas fa-star text-yellow-400"></i>
+                                    <i class="fas fa-star text-yellow-400"></i>
+                                    <i class="fas fa-star text-yellow-400"></i>
+                                    <i class="fas fa-star text-yellow-400"></i>
+                                </div>
+                                <span class="ml-2 text-sm text-gray-600">5.0 (2,500 reviews)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="md:w-1/2 animate-slide-up">
+                    <div class="relative">
+                        <div class="absolute -top-10 -left-10 w-64 h-64 bg-primary-100 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob"></div>
+                        <div class="absolute -bottom-10 -right-10 w-64 h-64 bg-secondary-100 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-2000"></div>
+                        <div class="absolute top-20 -right-20 w-64 h-64 bg-purple-100 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-4000"></div>
+                        
+                        <div class="relative bg-white rounded-2xl shadow-xl overflow-hidden transform rotate-1">
+                            <img src="https://images.unsplash.com/photo-1497633762265-9d179a990aa6?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Online Learning" class="w-full h-auto">
+                            <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-6">
+                                <div class="flex items-center">
+                                    <div class="w-12 h-12 bg-primary-500 rounded-full flex items-center justify-center text-white">
+                                        <i class="fas fa-play text-xl"></i>
+                                    </div>
+                                    <div class="ml-4">
+                                        <h3 class="text-white font-semibold">Introduction to Web Development</h3>
+                                        <p class="text-primary-200 text-sm">Watch the first lesson free</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="absolute top-4 right-4">
+                                <span class="live-badge bg-red-500 text-white text-xs font-bold px-2 py-1 rounded-full flex items-center">
+                                    <span class="w-2 h-2 bg-white rounded-full mr-1"></span> LIVE
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <p class="text-md text-gray-700">
-                After payment, please click "Access Courses" and provide your details and screenshot.
-            </p>
-            <p class="text-lg font-semibold text-gray-800 mt-4">
-                Contact: <span class="text-blue-600 font-bold">GAME CHANGER</span> - <span class="font-mono">+923326942269</span>
-            </p>
         </div>
-        <div class="md:w-1/3 flex justify-center">
-            <button id="accessCoursesBtn" class="btn-primary text-xl">
-                Access Courses
+    </section>
+
+    <!-- Features Section -->
+    <section class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Why Choose Our Platform</h2>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">We provide the best learning experience with premium features at an affordable price</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="card p-8 text-center hover:border-primary-500 transition-colors">
+                    <div class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center text-white text-2xl mx-auto mb-6">
+                        <i class="fas fa-laptop-code"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">100+ Premium Courses</h3>
+                    <p class="text-gray-600">Access our growing library of high-quality courses across various domains.</p>
+                </div>
+                
+                <div class="card p-8 text-center hover:border-primary-500 transition-colors">
+                    <div class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center text-white text-2xl mx-auto mb-6">
+                        <i class="fas fa-chalkboard-teacher"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Live Sessions</h3>
+                    <p class="text-gray-600">Weekly live Q&A sessions and workshops with industry experts.</p>
+                </div>
+                
+                <div class="card p-8 text-center hover:border-primary-500 transition-colors">
+                    <div class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center text-white text-2xl mx-auto mb-6">
+                        <i class="fas fa-certificate"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Certification</h3>
+                    <p class="text-gray-600">Get recognized certificates upon course completion to boost your career.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Popular Courses Section -->
+    <section id="courses" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Popular Courses</h2>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">Browse our most popular courses. More added every week!</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="coursesContainer">
+                <!-- Courses will be loaded here dynamically -->
+                <div class="skeleton h-96 rounded-xl"></div>
+                <div class="skeleton h-96 rounded-xl"></div>
+                <div class="skeleton h-96 rounded-xl"></div>
+            </div>
+            
+            <div class="text-center mt-12">
+                <button id="viewAllCoursesBtn" class="px-8 py-3 border border-primary-500 text-primary-600 rounded-full font-semibold hover:bg-primary-50 transition-colors">
+                    View All Courses <i class="fas fa-arrow-right ml-2"></i>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Simple, Affordable Pricing</h2>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">One-time payment for lifetime access to all current and future courses</p>
+            </div>
+            
+            <div class="max-w-4xl mx-auto bg-white rounded-2xl shadow-lg overflow-hidden">
+                <div class="md:flex">
+                    <div class="md:w-1/2 gradient-bg p-8 md:p-12 text-white">
+                        <h3 class="text-2xl font-bold mb-4">Premium Membership</h3>
+                        <p class="mb-6">Get unlimited access to all courses and features with a one-time payment.</p>
+                        
+                        <div class="mb-8">
+                            <span class="text-5xl font-bold">150 PKR</span>
+                            <span class="text-xl">/ lifetime</span>
+                        </div>
+                        
+                        <ul class="space-y-3 mb-8">
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle mr-2"></i> 100+ Premium Courses
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle mr-2"></i> Weekly Live Sessions
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle mr-2"></i> Downloadable Resources
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle mr-2"></i> Completion Certificates
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle mr-2"></i> 24/7 Support
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="md:w-1/2 p-8 md:p-12">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-6">Payment Methods</h3>
+                        
+                        <div class="space-y-4 mb-8">
+                            <div class="payment-method border rounded-lg p-4 cursor-pointer active">
+                                <div class="flex items-center">
+                                    <div class="w-12 h-12 bg-blue-50 rounded-lg flex items-center justify-center mr-4">
+                                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/SadaPay_logo.svg/1200px-SadaPay_logo.svg.png" alt="SadaPay" class="h-6">
+                                    </div>
+                                    <div>
+                                        <h4 class="font-semibold text-gray-900">SadaPay</h4>
+                                        <p class="text-sm text-gray-600">03446492768 (Abdul RAZZAQ)</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="payment-method border rounded-lg p-4 cursor-pointer">
+                                <div class="flex items-center">
+                                    <div class="w-12 h-12 bg-yellow-50 rounded-lg flex items-center justify-center mr-4">
+                                        <img src="https://cryptologos.cc/logos/bnb-bnb-logo.png" alt="Binance" class="h-6">
+                                    </div>
+                                    <div>
+                                        <h4 class="font-semibold text-gray-900">Binance</h4>
+                                        <p class="text-sm text-gray-600">ID: 907674656 (MSARIM21)</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <button id="pricingSubscribeBtn" class="btn-primary w-full py-4 text-lg">
+                            Subscribe Now
+                        </button>
+                        
+                        <p class="text-sm text-gray-500 mt-4 text-center">
+                            After payment, submit your details for verification
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Live Sessions Section -->
+    <section id="live" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Live Sessions</h2>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">Join our live interactive sessions with industry experts</p>
+            </div>
+            
+            <div class="max-w-4xl mx-auto bg-gray-900 rounded-2xl overflow-hidden shadow-xl">
+                <div class="md:flex">
+                    <div class="md:w-2/3 bg-black">
+                        <div class="aspect-w-16 aspect-h-9">
+                            <div id="liveVideoPlaceholder" class="w-full h-full flex items-center justify-center bg-gray-800 text-white">
+                                <div class="text-center p-8">
+                                    <div class="w-16 h-16 bg-red-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                                        <i class="fas fa-play text-2xl"></i>
+                                    </div>
+                                    <h3 class="text-xl font-bold mb-2">Live Session Not Currently Active</h3>
+                                    <p class="text-gray-400 mb-4">Our next live session will start soon</p>
+                                    <button id="visitChannelBtn" class="px-6 py-2 bg-red-600 text-white rounded-full font-medium hover:bg-red-700 transition-colors">
+                                        Visit YouTube Channel
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="md:w-1/3 p-6 bg-gray-900 text-white">
+                        <h3 class="text-xl font-bold mb-4">Upcoming Sessions</h3>
+                        
+                        <div class="space-y-4 mb-6">
+                            <div class="bg-gray-800 p-4 rounded-lg">
+                                <div class="flex items-start">
+                                    <div class="bg-primary-500 text-white text-xs font-bold px-2 py-1 rounded mr-3">LIVE</div>
+                                    <div>
+                                        <h4 class="font-semibold">Web Development Workshop</h4>
+                                        <p class="text-sm text-gray-400">Today, 8:00 PM (PKT)</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="bg-gray-800 p-4 rounded-lg">
+                                <div class="flex items-start">
+                                    <div class="bg-gray-600 text-white text-xs font-bold px-2 py-1 rounded mr-3">UPCOMING</div>
+                                    <div>
+                                        <h4 class="font-semibold">Python for Beginners</h4>
+                                        <p class="text-sm text-gray-400">Tomorrow, 6:00 PM (PKT)</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="bg-gray-800 p-4 rounded-lg">
+                                <div class="flex items-start">
+                                    <div class="bg-gray-600 text-white text-xs font-bold px-2 py-1 rounded mr-3">UPCOMING</div>
+                                    <div>
+                                        <h4 class="font-semibold">Freelancing Guide</h4>
+                                        <p class="text-sm text-gray-400">Friday, 7:00 PM (PKT)</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-gray-800 p-4 rounded-lg">
+                            <h4 class="font-semibold mb-2">Get Notified</h4>
+                            <p class="text-sm text-gray-400 mb-3">Subscribe to get notified when we go live</p>
+                            <div class="flex">
+                                <input type="email" placeholder="Your email" class="flex-grow px-4 py-2 bg-gray-700 text-white rounded-l-lg focus:outline-none focus:ring-2 focus:ring-primary-500">
+                                <button class="bg-primary-500 hover:bg-primary-600 px-4 py-2 rounded-r-lg text-white font-medium">
+                                    <i class="fas fa-bell"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">What Our Students Say</h2>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">Don't just take our word for it - hear from our community</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="card p-6">
+                    <div class="flex items-center mb-4">
+                        <img src="https://randomuser.me/api/portraits/women/32.jpg" alt="Student" class="w-12 h-12 rounded-full mr-4">
+                        <div>
+                            <h4 class="font-semibold">Aisha Khan</h4>
+                            <div class="flex text-yellow-400 text-sm">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600">"The courses are incredibly well-structured and easy to follow. I've learned so much in just a few weeks!"</p>
+                </div>
+                
+                <div class="card p-6">
+                    <div class="flex items-center mb-4">
+                        <img src="https://randomuser.me/api/portraits/men/45.jpg" alt="Student" class="w-12 h-12 rounded-full mr-4">
+                        <div>
+                            <h4 class="font-semibold">Ahmed Raza</h4>
+                            <div class="flex text-yellow-400 text-sm">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600">"The live sessions are amazing. Being able to ask questions directly to the instructor is invaluable."</p>
+                </div>
+                
+                <div class="card p-6">
+                    <div class="flex items-center mb-4">
+                        <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Student" class="w-12 h-12 rounded-full mr-4">
+                        <div>
+                            <h4 class="font-semibold">Fatima Ali</h4>
+                            <div class="flex text-yellow-400 text-sm">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600">"For the price, the quality of content is unbelievable. I've recommended it to all my friends!"</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-16 gradient-bg">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-3xl md:text-4xl font-bold text-white mb-6">Ready to Start Learning?</h2>
+            <p class="text-xl text-white opacity-90 mb-8 max-w-2xl mx-auto">Join thousands of students who are advancing their careers with our courses.</p>
+            <button id="finalSubscribeBtn" class="bg-white text-primary-600 hover:bg-gray-100 px-10 py-4 rounded-full text-lg font-semibold shadow-lg transition-colors">
+                Get Lifetime Access for 150 PKR
             </button>
         </div>
     </section>
 
-    <!-- After Payment User Details Section (Initially hidden) -->
-    <section id="afterPaymentSection" class="w-full max-w-3xl mx-auto bg-white p-8 md:p-10 rounded-2xl shadow-xl mb-8 hidden">
-        <h2 class="text-3xl font-bold text-gray-800 mb-4 text-center">Confirm Your Subscription</h2>
-        <p class="text-lg text-gray-700 mb-6 text-center">
-            Please fill in your details and upload a screenshot of your payment.
-            The owner will verify and grant you access.
-        </p>
-        <div class="space-y-4">
-            <input type="text" id="userName" placeholder="Your Full Name" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 text-gray-800">
-            <input type="text" id="userContact" placeholder="Your Phone Number / Email" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 text-gray-800">
-            <label for="paymentScreenshot" class="block text-gray-700 font-semibold mb-2">Upload Payment Screenshot:</label>
-            <input type="file" id="paymentScreenshot" accept="image/*" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 text-gray-800">
-            <button id="submitPaymentDetailsBtn" class="btn-primary py-2 px-5 text-base w-full">Submit Details for Verification</button>
-        </div>
-        <p class="text-sm text-gray-500 mt-4 text-center">
-            (In a real application, this form data and screenshot would be sent to a secure server for review.)
-        </p>
-    </section>
-
-    <!-- YouTube Live Section -->
-    <section class="w-full max-w-3xl mx-auto bg-white p-8 md:p-10 rounded-2xl shadow-xl mb-8 flex flex-col items-center text-center">
-        <h2 class="text-3xl font-bold text-gray-800 mb-4">Join Our Live Sessions!</h2>
-        <p class="text-lg text-gray-700 mb-6">
-            Click the button below to watch me live on YouTube when I'm streaming.
-        </p>
-        <a id="youtubeLiveLink" href="http://www.youtube.com/@msarim2122" target="_blank" class="btn-primary text-xl flex items-center space-x-2">
-            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path d="M19.615 3.106A2.791 2.791 0 0 0 17.65 2.14c-.645-.188-4.992-.375-7.65-.375S3.336 1.952 2.69 2.14A2.79 2.79 0 0 0 .725 3.106C.314 4.015 0 6.007 0 9.75v4.5C0 17.993.314 19.985.725 20.894a2.79 2.79 0 0 0 1.965.966c.645.188 4.992.375 7.65.375s7.005-.188 7.65-.375a2.791 2.791 0 0 0 1.965-.966c.411-.909.725-2.901.725-6.65v-4.5c0-3.743-.314-5.735-.725-6.644zM9.998 16.035V7.965L16.2 12l-6.202 4.035z"></path>
-            </svg>
-            <span>Watch Live on YouTube</span>
-        </a>
-        <p class="text-sm text-gray-500 mt-2">
-            (The link defaults to your YouTube channel; actual live status detection requires YouTube API.)
-        </p>
-    </section>
-
-    <!-- Admin Login Link -->
-    <section class="w-full max-w-3xl mx-auto text-center mt-8">
-        <button id="adminLoginBtn" class="text-blue-600 hover:underline text-sm focus:outline-none">
-            Admin Login
-        </button>
-    </section>
-
-    <!-- Display User ID (for debugging/multi-user context in Canvas) -->
-    <div id="userIdDisplay" class="text-xs text-gray-400 mt-2"></div>
-
-    <!-- Admin Panel (Initially hidden) -->
-    <div id="adminPanel" class="w-full max-w-4xl mx-auto bg-gray-50 p-8 md:p-10 rounded-2xl shadow-inner mt-8 hidden">
-        <h2 class="text-3xl font-bold text-gray-800 mb-6 text-center">Admin Panel</h2>
-        <p class="text-sm text-red-600 mb-6 text-center">
-            *Warning: Data saved here will persist in Firestore, but payment verification is manual.*
-        </p>
-
-        <!-- Manage YouTube Live Link -->
-        <div class="card mb-6">
-            <h3 class="text-2xl font-semibold text-gray-800 mb-4">Manage Live Stream Link</h3>
-            <div class="flex flex-col md:flex-row items-center md:space-x-4 space-y-4 md:space-y-0">
-                <input type="text" id="youtubeLiveInput" placeholder="Enter YouTube Live URL" class="flex-grow p-3 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 text-gray-800">
-                <button id="updateLiveLinkBtn" class="btn-primary py-2 px-5 text-base">Update Live Link</button>
+    <!-- Contact Section -->
+    <section id="contact" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Have Questions?</h2>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">Contact us directly for any inquiries or support</p>
             </div>
-            <p class="text-gray-600 text-sm mt-2">Current Live Link: <span id="currentLiveLink" class="font-mono text-blue-600">Loading...</span></p>
-        </div>
-
-        <!-- Add Course -->
-        <div class="card mb-6">
-            <h3 class="text-2xl font-semibold text-gray-800 mb-4">Add New Course</h3>
-            <div class="space-y-4">
-                <input type="text" id="courseTitle" placeholder="Course Title" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 text-gray-800">
-                <textarea id="courseDescription" placeholder="Course Description" rows="3" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 text-gray-800"></textarea>
-                <input type="text" id="courseLink" placeholder="Course Video/Material Link" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 text-gray-800">
-                <button id="addCourseBtn" class="btn-primary py-2 px-5 text-base w-full">Add Course</button>
-            </div>
-        </div>
-
-        <!-- Course List -->
-        <div class="card">
-            <h3 class="text-2xl font-semibold text-gray-800 mb-4">Existing Courses</h3>
-            <ul id="courseList" class="space-y-4">
-                <li class="text-gray-500 text-center">Loading courses...</li>
-            </ul>
-        </div>
-    </div>
-
-    <script type="module">
-        // Firebase SDK imports
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
-        import { getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
-        import { getFirestore, collection, doc, addDoc, deleteDoc, onSnapshot, query, setDoc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
-
-        document.addEventListener('DOMContentLoaded', async () => {
-            // Global variables provided by the Canvas environment
-            const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
-            const firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : {};
-            const initialAuthToken = typeof __initial_auth_token !== 'undefined' ? __initial_auth_token : null;
-
-            // Initialize Firebase
-            let app;
-            let db;
-            let auth;
-            let userId = null;
-
-            try {
-                app = initializeApp(firebaseConfig);
-                db = getFirestore(app);
-                auth = getAuth(app);
-
-                // Sign in with custom token if available, otherwise anonymously
-                if (initialAuthToken) {
-                    await signInWithCustomToken(auth, initialAuthToken);
-                    console.log("Signed in with custom token.");
-                } else {
-                    await signInAnonymously(auth);
-                    console.log("Signed in anonymously.");
-                }
-
-                // Listen for auth state changes to get the user ID
-                onAuthStateChanged(auth, (user) => {
-                    if (user) {
-                        userId = user.uid;
-                        document.getElementById('userIdDisplay').textContent = `User ID: ${userId}`;
-                        console.log("Auth state changed. User ID:", userId);
-                        // Start loading Firestore data once authenticated
-                        loadFirestoreData();
-                    } else {
-                        userId = crypto.randomUUID(); // Generate a random ID if not authenticated
-                        document.getElementById('userIdDisplay').textContent = `User ID: ${userId} (Anonymous)`;
-                        console.log("Auth state changed. Anonymous User ID:", userId);
-                        // Still load public data even if anonymous
-                        loadFirestoreData();
-                    }
-                });
-
-            } catch (error) {
-                console.error("Error initializing Firebase or authenticating:", error);
-                showCustomModal(`Failed to initialize application: ${error.message}. Please try again later.`, 'alert');
-            }
-
-
-            // UI elements
-            const accessCoursesBtn = document.getElementById('accessCoursesBtn');
-            const afterPaymentSection = document.getElementById('afterPaymentSection');
-            const userNameInput = document.getElementById('userName');
-            const userContactInput = document.getElementById('userContact');
-            const paymentScreenshotInput = document.getElementById('paymentScreenshot');
-            const submitPaymentDetailsBtn = document.getElementById('submitPaymentDetailsBtn');
-
-            const adminLoginBtn = document.getElementById('adminLoginBtn');
-            const adminPanel = document.getElementById('adminPanel');
-            const youtubeLiveLink = document.getElementById('youtubeLiveLink');
-            const youtubeLiveInput = document.getElementById('youtubeLiveInput');
-            const updateLiveLinkBtn = document.getElementById('updateLiveLinkBtn');
-            const currentLiveLinkSpan = document.getElementById('currentLiveLink');
-
-            const courseTitleInput = document.getElementById('courseTitle');
-            const courseDescriptionInput = document.getElementById('courseDescription');
-            const courseLinkInput = document.getElementById('courseLink');
-            const addCourseBtn = document.getElementById('addCourseBtn');
-            const courseList = document.getElementById('courseList');
-            const userIdDisplay = document.getElementById('userIdDisplay');
-
-            const ADMIN_PASSWORD = "msarim7898"; // Admin password
-
-            // Firestore paths
-            const coursesCollectionPath = `artifacts/${appId}/public/data/courses`;
-            const settingsDocumentPath = `artifacts/${appId}/public/data/settings/youtubeLive`;
-
-            let courses = []; // Local array to hold courses fetched from Firestore
-
-            // Function to render courses
-            function renderCourses() {
-                courseList.innerHTML = ''; // Clear existing list
-                if (courses.length === 0) {
-                    courseList.innerHTML = '<li class="text-gray-500 text-center">No courses added yet.</li>';
-                    return;
-                }
-                courses.forEach(course => {
-                    const li = document.createElement('li');
-                    li.className = 'bg-gray-100 p-4 rounded-lg flex flex-col md:flex-row justify-between items-start md:items-center space-y-2 md:space-y-0';
-                    li.innerHTML = `
-                        <div>
-                            <h4 class="text-xl font-semibold text-gray-900">${course.title}</h4>
-                            <p class="text-gray-700 text-sm mt-1">${course.description}</p>
-                            <a href="${course.link}" target="_blank" class="text-blue-600 hover:underline text-sm block mt-2">View Course Material</a>
+            
+            <div class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="card p-8">
+                    <h3 class="text-xl font-bold text-gray-900 mb-6">Contact Information</h3>
+                    
+                    <div class="space-y-6">
+                        <div class="flex items-start">
+                            <div class="w-10 h-10 bg-primary-100 rounded-full flex items-center justify-center text-primary-600 mr-4">
+                                <i class="fas fa-phone-alt"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-900">Phone / WhatsApp</h4>
+                                <p class="text-gray-600">+92 332 6942269</p>
+                                <p class="text-sm text-gray-500">(GAME CHANGER)</p>
+                            </div>
                         </div>
-                        <button data-id="${course.id}" class="delete-course-btn bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-full text-sm transition-colors duration-200 mt-3 md:mt-0">Delete</button>
-                    `;
-                    courseList.appendChild(li);
-                });
+                        
+                        <div class="flex items-start">
+                            <div class="w-10 h-10 bg-primary-100 rounded-full flex items-center justify-center text-primary-600 mr-4">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-900">Email</h4>
+                                <p class="text-gray-600">support@onlinecoursesfree.com</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="w-10 h-10 bg-primary-100 rounded-full flex items-center justify-center text-primary-600 mr-4">
+                                <i class="fab fa-youtube"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-900">YouTube Channel</h4>
+                                <p class="text-gray-600">youtube.com/@msarim2122</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card p-8">
+                    <h3 class="text-xl font-bold text-gray-900 mb-6">Send Us a Message</h3>
+                    
+                    <form id="contactForm" class="space-y-4">
+                        <div>
+                            <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Your Name</label>
+                            <input type="text" id="name" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500">
+                        </div>
+                        
+                        <div>
+                            <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
+                            <input type="email" id="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500">
+                        </div>
+                        
+                        <div>
+                            <label for="message" class="block text-sm font-medium text-gray-700 mb-1">Message</label>
+                            <textarea id="message" rows="4" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500"></textarea>
+                        </div>
+                        
+                                                    <button type="submit" class="btn-primary w-full py-3">
+                                Send Message <i class="fas fa-paper-plane ml-2"></i>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-                // Add event listeners to new delete buttons
-                document.querySelectorAll('.delete-course-btn').forEach(button => {
-                    button.addEventListener('click', async (event) => {
-                        const courseId = event.target.dataset.id; // Firestore doc ID is a string
-                        const courseTitle = courses.find(c => c.id === courseId)?.title; // Get title for confirmation message
+        <!-- Footer -->
+        <footer class="bg-darker text-white py-12">
+            <div class="container mx-auto px-4">
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+                    <div>
+                        <div class="flex items-center space-x-2 mb-4">
+                            <div class="w-10 h-10 rounded-full gradient-bg flex items-center justify-center text-white font-bold">
+                                OCF
+                            </div>
+                            <h3 class="text-xl font-bold">ONLINE COURSES FREE</h3>
+                        </div>
+                        <p class="text-gray-400">Premium online learning platform providing free access to quality education.</p>
+                    </div>
+                    
+                    <div>
+                        <h4 class="text-lg font-semibold mb-4">Quick Links</h4>
+                        <ul class="space-y-2">
+                            <li><a href="#home" class="text-gray-400 hover:text-white transition-colors">Home</a></li>
+                            <li><a href="#courses" class="text-gray-400 hover:text-white transition-colors">Courses</a></li>
+                            <li><a href="#pricing" class="text-gray-400 hover:text-white transition-colors">Pricing</a></li>
+                            <li><a href="#live" class="text-gray-400 hover:text-white transition-colors">Live Sessions</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div>
+                        <h4 class="text-lg font-semibold mb-4">Support</h4>
+                        <ul class="space-y-2">
+                            <li><a href="#" class="text-gray-400 hover:text-white transition-colors">FAQs</a></li>
+                            <li><a href="#contact" class="text-gray-400 hover:text-white transition-colors">Contact Us</a></li>
+                            <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Privacy Policy</a></li>
+                            <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Terms of Service</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div>
+                        <h4 class="text-lg font-semibold mb-4">Connect With Us</h4>
+                        <div class="flex space-x-4 mb-4">
+                            <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center text-white hover:bg-primary-500 transition-colors">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                            <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center text-white hover:bg-primary-500 transition-colors">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                            <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center text-white hover:bg-primary-500 transition-colors">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                            <a href="https://youtube.com/@msarim2122" target="_blank" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center text-white hover:bg-primary-500 transition-colors">
+                                <i class="fab fa-youtube"></i>
+                            </a>
+                        </div>
+                        <p class="text-gray-400 text-sm">Subscribe to our newsletter for updates</p>
+                    </div>
+                </div>
+                
+                <div class="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center">
+                    <p class="text-gray-500 text-sm mb-4 md:mb-0">© 2023 ONLINE COURSES FREE. All rights reserved.</p>
+                    <div class="flex space-x-6">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/SadaPay_logo.svg/1200px-SadaPay_logo.svg.png" alt="SadaPay" class="h-6 opacity-80">
+                        <img src="https://cryptologos.cc/logos/bnb-bnb-logo.png" alt="Binance" class="h-6 opacity-80">
+                    </div>
+                </div>
+            </div>
+        </footer>
 
-                        showCustomModal(`Are you sure you want to delete "${courseTitle}"?`, 'confirm', async () => {
-                            try {
-                                if (db) { // Ensure db is initialized
-                                    await deleteDoc(doc(db, coursesCollectionPath, courseId));
-                                    console.log("Course deleted from Firestore:", courseId);
-                                } else {
-                                    console.error("Firestore not initialized.");
-                                    showCustomModal("Error: Database not ready. Please try again.", 'alert');
-                                }
-                            } catch (e) {
-                                console.error("Error deleting course:", e);
-                                showCustomModal(`Failed to delete course: ${e.message}`, 'alert');
-                            }
+        <!-- Subscription Modal -->
+        <div id="subscriptionModal" class="modal-overlay hidden">
+            <div class="modal-content">
+                <h3 class="text-2xl font-bold text-gray-900 mb-2">Complete Your Subscription</h3>
+                <p class="text-gray-600 mb-6">After payment, please provide your details for verification</p>
+                
+                <form id="subscriptionForm" class="space-y-4">
+                    <div>
+                        <label for="subName" class="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
+                        <input type="text" id="subName" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500">
+                    </div>
+                    
+                    <div>
+                        <label for="subContact" class="block text-sm font-medium text-gray-700 mb-1">WhatsApp Number</label>
+                        <input type="tel" id="subContact" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500">
+                    </div>
+                    
+                    <div>
+                        <label for="subPaymentMethod" class="block text-sm font-medium text-gray-700 mb-1">Payment Method</label>
+                        <select id="subPaymentMethod" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500">
+                            <option value="">Select payment method</option>
+                            <option value="sadapay">SadaPay (03446492768 - Abdul RAZZAQ)</option>
+                            <option value="binance">Binance (ID: 907674656 - MSARIM21)</option>
+                        </select>
+                    </div>
+                    
+                    <div>
+                        <label for="subScreenshot" class="block text-sm font-medium text-gray-700 mb-1">Payment Screenshot</label>
+                        <input type="file" id="subScreenshot" accept="image/*" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500">
+                    </div>
+                    
+                    <div class="flex space-x-4 pt-2">
+                        <button type="button" id="cancelSubscriptionBtn" class="flex-grow px-6 py-3 border border-gray-300 text-gray-700 rounded-lg font-medium hover:bg-gray-50 transition-colors">
+                            Cancel
+                        </button>
+                        <button type="submit" id="confirmSubscriptionBtn" class="flex-grow btn-primary py-3">
+                            Submit Details
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Admin Login Modal -->
+        <div id="adminLoginModal" class="modal-overlay hidden">
+            <div class="modal-content">
+                <h3 class="text-2xl font-bold text-gray-900 mb-6 text-center">Admin Login</h3>
+                
+                <form id="adminLoginForm" class="space-y-6">
+                    <div>
+                        <label for="adminEmail" class="block text-sm font-medium text-gray-700 mb-1">Email</label>
+                        <input type="email" id="adminEmail" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500">
+                    </div>
+                    
+                    <div>
+                        <label for="adminPassword" class="block text-sm font-medium text-gray-700 mb-1">Password</label>
+                        <input type="password" id="adminPassword" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500">
+                    </div>
+                    
+                    <div id="adminLoginError" class="text-red-600 text-sm hidden"></div>
+                    
+                    <button type="submit" class="btn-primary w-full py-3">
+                        Login <i class="fas fa-sign-in-alt ml-2"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Admin Panel Modal -->
+        <div id="adminPanelModal" class="modal-overlay hidden">
+            <div class="modal-content max-w-4xl">
+                <div class="flex justify-between items-center mb-6">
+                    <h3 class="text-2xl font-bold text-gray-900">Admin Panel</h3>
+                    <button id="closeAdminPanelBtn" class="text-gray-500 hover:text-gray-700">
+                        <i class="fas fa-times text-xl"></i>
+                    </button>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="bg-gray-50 p-6 rounded-lg">
+                        <h4 class="text-lg font-semibold mb-4">Add New Course</h4>
+                        
+                        <form id="addCourseForm" class="space-y-4">
+                            <div>
+                                <label for="courseTitle" class="block text-sm font-medium text-gray-700 mb-1">Course Title</label>
+                                <input type="text" id="courseTitle" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500">
+                            </div>
+                            
+                            <div>
+                                <label for="courseDescription" class="block text-sm font-medium text-gray-700 mb-1">Description</label>
+                                <textarea id="courseDescription" rows="3" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500"></textarea>
+                            </div>
+                            
+                            <div>
+                                <label for="courseImage" class="block text-sm font-medium text-gray-700 mb-1">Course Image URL</label>
+                                <input type="url" id="courseImage" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500">
+                            </div>
+                            
+                            <div>
+                                <label for="courseLink" class="block text-sm font-medium text-gray-700 mb-1">Course Link</label>
+                                <input type="url" id="courseLink" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500">
+                            </div>
+                            
+                            <button type="submit" class="btn-primary w-full py-3">
+                                Add Course <i class="fas fa-plus-circle ml-2"></i>
+                            </button>
+                        </form>
+                    </div>
+                    
+                    <div class="bg-gray-50 p-6 rounded-lg">
+                        <h4 class="text-lg font-semibold mb-4">Manage Live Sessions</h4>
+                        
+                        <form id="liveSessionForm" class="space-y-4">
+                            <div>
+                                <label for="youtubeLiveUrl" class="block text-sm font-medium text-gray-700 mb-1">YouTube Live URL</label>
+                                <input type="url" id="youtubeLiveUrl" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500">
+                            </div>
+                            
+                            <div>
+                                <label for="nextSessionTime" class="block text-sm font-medium text-gray-700 mb-1">Next Session Time</label>
+                                <input type="datetime-local" id="nextSessionTime" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500">
+                            </div>
+                            
+                            <div>
+                                <label for="sessionTopic" class="block text-sm font-medium text-gray-700 mb-1">Session Topic</label>
+                                <input type="text" id="sessionTopic" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500">
+                            </div>
+                            
+                            <button type="submit" class="btn-primary w-full py-3">
+                                Update Live Session <i class="fas fa-save ml-2"></i>
+                            </button>
+                        </form>
+                        
+                        <div class="mt-8">
+                            <h4 class="text-lg font-semibold mb-4">Recent Subscribers</h4>
+                            <div class="bg-white p-4 rounded-lg shadow-inner max-h-60 overflow-y-auto">
+                                <div class="space-y-3" id="subscribersList">
+                                    <div class="flex items-center justify-between p-2 hover:bg-gray-50 rounded">
+                                        <div>
+                                            <p class="font-medium">Aisha Khan</p>
+                                            <p class="text-sm text-gray-600">+923001234567</p>
+                                        </div>
+                                        <span class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded">Verified</span>
+                                    </div>
+                                    <div class="flex items-center justify-between p-2 hover:bg-gray-50 rounded">
+                                        <div>
+                                            <p class="font-medium">Ahmed Raza</p>
+                                            <p class="text-sm text-gray-600">+923451234567</p>
+                                        </div>
+                                        <span class="text-xs bg-yellow-100 text-yellow-800 px-2 py-1 rounded">Pending</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mt-8">
+                    <h4 class="text-lg font-semibold mb-4">Current Courses</h4>
+                    <div class="bg-white p-4 rounded-lg shadow-inner">
+                        <div class="overflow-x-auto">
+                            <table class="min-w-full divide-y divide-gray-200">
+                                <thead class="bg-gray-50">
+                                    <tr>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Title</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Link</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="bg-white divide-y divide-gray-200" id="adminCoursesList">
+                                    <tr>
+                                        <td class="px-6 py-4 whitespace-nowrap">Web Development Basics</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-blue-600 underline">https://example.com/course1</td>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <button class="text-red-600 hover:text-red-900">
+                                                <i class="fas fa-trash"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Loading Overlay -->
+        <div id="loadingOverlay" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+            <div class="bg-white p-8 rounded-lg flex flex-col items-center">
+                <div class="loading-spinner mb-4"></div>
+                <p class="text-gray-700">Processing your request...</p>
+            </div>
+        </div>
+
+        <!-- Floating Action Button -->
+        <button id="floatingSupportBtn" class="fixed bottom-6 right-6 w-14 h-14 gradient-bg rounded-full text-white flex items-center justify-center shadow-lg floating-button hover:scale-110 transition-transform">
+            <i class="fas fa-headset text-xl"></i>
+        </button>
+
+        <script type="module">
+            document.addEventListener('DOMContentLoaded', () => {
+                // DOM Elements
+                const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+                const mobileMenu = document.getElementById('mobileMenu');
+                const subscriptionModal = document.getElementById('subscriptionModal');
+                const subscriptionForm = document.getElementById('subscriptionForm');
+                const cancelSubscriptionBtn = document.getElementById('cancelSubscriptionBtn');
+                const confirmSubscriptionBtn = document.getElementById('confirmSubscriptionBtn');
+                const adminLoginBtn = document.getElementById('loginBtn');
+                const mobileLoginBtn = document.getElementById('mobileLoginBtn');
+                const adminLoginModal = document.getElementById('adminLoginModal');
+                const adminLoginForm = document.getElementById('adminLoginForm');
+                const adminPanelModal = document.getElementById('adminPanelModal');
+                const closeAdminPanelBtn = document.getElementById('closeAdminPanelBtn');
+                const loadingOverlay = document.getElementById('loadingOverlay');
+                const floatingSupportBtn = document.getElementById('floatingSupportBtn');
+                const visitChannelBtn = document.getElementById('visitChannelBtn');
+                
+                // Subscription buttons
+                const subscribeButtons = [
+                    document.getElementById('subscribeBtn'),
+                    document.getElementById('heroSubscribeBtn'),
+                    document.getElementById('pricingSubscribeBtn'),
+                    document.getElementById('finalSubscribeBtn')
+                ];
+                
+                // Sample courses data (in a real app, this would come from Firebase)
+                const sampleCourses = [
+                    {
+                        id: 1,
+                        title: "Web Development Fundamentals",
+                        description: "Learn HTML, CSS, and JavaScript from scratch",
+                        image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+                        link: "#"
+                    },
+                    {
+                        id: 2,
+                        title: "Python for Beginners",
+                        description: "Start your programming journey with Python",
+                        image: "https://images.unsplash.com/photo-1526379095098-d400fd0bf935?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+                        link: "#"
+                    },
+                    {
+                        id: 3,
+                        title: "Digital Marketing Masterclass",
+                        description: "Learn SEO, Social Media, and Content Marketing",
+                        image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+                        link: "#"
+                    }
+                ];
+                
+                // Initialize UI
+                function initUI() {
+                    renderCourses();
+                    setupEventListeners();
+                }
+                
+                // Render courses
+                function renderCourses() {
+                    const coursesContainer = document.getElementById('coursesContainer');
+                    coursesContainer.innerHTML = '';
+                    
+                    sampleCourses.forEach(course => {
+                        const courseElement = document.createElement('div');
+                        courseElement.className = 'course-card animate-fade-in';
+                        courseElement.innerHTML = `
+                            <img src="${course.image}" alt="${course.title}" class="course-image">
+                            <div class="p-6">
+                                <h3 class="text-xl font-bold text-gray-900 mb-2">${course.title}</h3>
+                                <p class="text-gray-600 mb-4">${course.description}</p>
+                                <a href="${course.link}" class="text-primary-600 font-medium hover:text-primary-800 transition-colors inline-flex items-center">
+                                    View Course <i class="fas fa-arrow-right ml-2"></i>
+                                </a>
+                            </div>
+                        `;
+                        coursesContainer.appendChild(courseElement);
+                    });
+                }
+                
+                // Setup event listeners
+                function setupEventListeners() {
+                    // Mobile menu toggle
+                    mobileMenuBtn.addEventListener('click', () => {
+                        mobileMenu.classList.toggle('hidden');
+                    });
+                    
+                    // Subscription buttons
+                    subscribeButtons.forEach(button => {
+                        button.addEventListener('click', () => {
+                            subscriptionModal.classList.remove('hidden');
+                            document.body.style.overflow = 'hidden';
                         });
                     });
-                });
-            }
-
-            // Function to show a custom confirmation/alert modal
-            function showCustomModal(message, type = 'alert', onConfirmCallback = null) {
-                const modalId = 'customModal';
-                let modal = document.getElementById(modalId);
-                if (!modal) {
-                    modal = document.createElement('div');
-                    modal.id = modalId;
-                    modal.className = 'modal-overlay hidden';
-                    modal.innerHTML = `
-                        <div class="modal-content">
-                            <p class="text-lg font-semibold mb-4" id="modalMessage"></p>
-                            <div class="flex justify-center space-x-4" id="modalButtons">
-                                <button id="modalConfirmBtn" class="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2 rounded-full transition-colors duration-200 hidden">Confirm</button>
-                                <button id="modalCancelBtn" class="bg-gray-300 hover:bg-gray-400 text-gray-800 px-5 py-2 rounded-full transition-colors duration-200">OK</button>
-                            </div>
-                        </div>
-                    `;
-                    document.body.appendChild(modal);
-                }
-
-                document.getElementById('modalMessage').textContent = message;
-                const confirmBtn = document.getElementById('modalConfirmBtn');
-                const cancelBtn = document.getElementById('modalCancelBtn');
-
-                // Clean up previous event listeners to prevent multiple firings
-                confirmBtn.onclick = null;
-                cancelBtn.onclick = null;
-
-                if (type === 'confirm') {
-                    confirmBtn.classList.remove('hidden');
-                    cancelBtn.textContent = 'Cancel';
-                    confirmBtn.onclick = () => {
-                        onConfirmCallback && onConfirmCallback();
-                        modal.classList.add('hidden');
-                    };
-                } else { // 'alert'
-                    confirmBtn.classList.add('hidden');
-                    cancelBtn.textContent = 'OK';
-                    cancelBtn.onclick = () => {
-                        onConfirmCallback && onConfirmCallback();
-                        modal.classList.add('hidden');
-                    };
-                }
-
-                modal.classList.remove('hidden');
-            }
-
-            // Function to show the admin password modal
-            function showAdminLoginModal() {
-                const modalId = 'adminLoginModal';
-                let modal = document.getElementById(modalId);
-                if (!modal) {
-                    modal = document.createElement('div');
-                    modal.id = modalId;
-                    modal.className = 'modal-overlay hidden';
-                    modal.innerHTML = `
-                        <div class="modal-content">
-                            <h3 class="text-xl font-semibold mb-4">Admin Login</h3>
-                            <input type="password" id="adminPasswordInput" placeholder="Enter Password" class="modal-input">
-                            <p id="adminLoginError" class="error-message hidden">Incorrect password.</p>
-                            <div class="flex justify-center space-x-4">
-                                <button id="adminSubmitPasswordBtn" class="btn-primary py-2 px-5 text-base">Login</button>
-                                <button id="adminCancelBtn" class="bg-gray-300 hover:bg-gray-400 text-gray-800 px-5 py-2 rounded-full transition-colors duration-200">Cancel</button>
-                            </div>
-                        </div>
-                    `;
-                    document.body.appendChild(modal);
-                }
-
-                const passwordInput = document.getElementById('adminPasswordInput');
-                const errorDisplay = document.getElementById('adminLoginError');
-                const submitBtn = document.getElementById('adminSubmitPasswordBtn');
-                const cancelBtn = document.getElementById('adminCancelBtn');
-
-                passwordInput.value = ''; // Clear previous input
-                errorDisplay.classList.add('hidden'); // Hide error message
-
-                modal.classList.remove('hidden');
-
-                const cleanup = () => {
-                    submitBtn.onclick = null;
-                    cancelBtn.onclick = null;
-                    modal.classList.add('hidden');
-                };
-
-                submitBtn.onclick = () => {
-                    if (passwordInput.value === ADMIN_PASSWORD) {
-                        adminPanel.classList.remove('hidden');
-                        showCustomModal("Welcome, Admin!", 'alert');
-                        cleanup();
-                    } else {
-                        errorDisplay.classList.remove('hidden');
-                    }
-                };
-
-                cancelBtn.onclick = () => {
-                    cleanup();
-                };
-            }
-
-            // --- Firestore Data Loading and Listeners ---
-            function loadFirestoreData() {
-                if (!db) {
-                    console.warn("Firestore not ready, skipping data load.");
-                    return;
-                }
-
-                // Listen for real-time updates to courses
-                const coursesQuery = query(collection(db, coursesCollectionPath));
-                onSnapshot(coursesQuery, (snapshot) => {
-                    courses = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-                    renderCourses();
-                    console.log("Courses updated from Firestore.");
-                }, (error) => {
-                    console.error("Error fetching courses:", error);
-                    showCustomModal(`Error loading courses: ${error.message}`, 'alert');
-                });
-
-                // Listen for real-time updates to YouTube Live link
-                const settingsDocRef = doc(db, settingsDocumentPath);
-                onSnapshot(settingsDocRef, (docSnap) => {
-                    if (docSnap.exists()) {
-                        const data = docSnap.data();
-                        if (data && data.url) {
-                            youtubeLiveLink.href = data.url;
-                            currentLiveLinkSpan.textContent = data.url;
-                            youtubeLiveInput.value = data.url; // Pre-fill admin input
-                            console.log("YouTube Live link updated from Firestore:", data.url);
-                        }
-                    } else {
-                        console.log("No YouTube Live link found in settings.");
-                        youtubeLiveLink.href = "http://www.youtube.com/@msarim2122"; // Default
-                        currentLiveLinkSpan.textContent = "http://www.youtube.com/@msarim2122"; // Default
-                        youtubeLiveInput.value = "http://www.youtube.com/@msarim2122"; // Default
-                    }
-                }, (error) => {
-                    console.error("Error fetching YouTube Live link:", error);
-                    showCustomModal(`Error loading live link: ${error.message}`, 'alert');
-                });
-            }
-
-            // --- Event Listeners ---
-
-            // Simulate accessing courses: Show after payment form
-            accessCoursesBtn.addEventListener('click', () => {
-                showCustomModal("This button initiates the subscription process. Please proceed with payment and then fill the form.", 'alert', () => {
-                    afterPaymentSection.classList.remove('hidden');
-                    window.scrollTo({ top: afterPaymentSection.offsetTop, behavior: 'smooth' }); // Scroll to the form
-                });
-            });
-
-            // Submit payment details (client-side simulation)
-            submitPaymentDetailsBtn.addEventListener('click', () => {
-                const name = userNameInput.value.trim();
-                const contact = userContactInput.value.trim();
-                const screenshotFile = paymentScreenshotInput.files[0];
-
-                if (name && contact && screenshotFile) {
-                    const reader = new FileReader();
-                    reader.onload = (e) => {
-                        const screenshotDataUrl = e.target.result; // Base64 data URL of the image
-                        showCustomModal("plz check your details and contact owner on whatsaap +923326942269", 'alert');
-                        // In a real application, you would send name, contact, and screenshotDataUrl to your backend
-                        console.log("Submitted Details:", { name, contact, screenshot: screenshotDataUrl.substring(0, 50) + '...' });
-                        // Clear the form
-                        userNameInput.value = '';
-                        userContactInput.value = '';
-                        paymentScreenshotInput.value = ''; // Clear file input
-                        afterPaymentSection.classList.add('hidden'); // Hide the form after submission
-                    };
-                    reader.readAsDataURL(screenshotFile); // Read file as Data URL
-                } else {
-                    showCustomModal("Please fill in your Name, Contact, and upload a Payment Screenshot.", 'alert');
-                }
-            });
-
-            // Admin Login Button
-            adminLoginBtn.addEventListener('click', () => {
-                showAdminLoginModal();
-            });
-
-            // Update YouTube Live Link (to Firestore)
-            updateLiveLinkBtn.addEventListener('click', async () => {
-                const newLink = youtubeLiveInput.value.trim();
-                if (newLink) {
-                    try {
-                        if (db) { // Ensure db is initialized
-                            await setDoc(doc(db, settingsDocumentPath), { url: newLink });
-                            console.log("YouTube Live link updated in Firestore:", newLink);
-                            youtubeLiveInput.value = ''; // Clear input
-                            showCustomModal("YouTube Live link updated successfully!", 'alert');
+                    
+                    // Cancel subscription
+                    cancelSubscriptionBtn.addEventListener('click', () => {
+                        subscriptionModal.classList.add('hidden');
+                        document.body.style.overflow = 'auto';
+                    });
+                    
+                    // Subscription form submission
+                    subscriptionForm.addEventListener('submit', (e) => {
+                        e.preventDefault();
+                        
+                        // Show loading
+                        loadingOverlay.classList.remove('hidden');
+                        
+                        // Simulate API call
+                        setTimeout(() => {
+                            loadingOverlay.classList.add('hidden');
+                            subscriptionModal.classList.add('hidden');
+                            document.body.style.overflow = 'auto';
+                            
+                            // Show success message
+                            alert('Your subscription details have been submitted! The admin will verify your payment and grant you access shortly.');
+                            
+                            // Reset form
+                            subscriptionForm.reset();
+                        }, 2000);
+                    });
+                    
+                    // Admin login buttons
+                    [adminLoginBtn, mobileLoginBtn].forEach(button => {
+                        button.addEventListener('click', () => {
+                            adminLoginModal.classList.remove('hidden');
+                            document.body.style.overflow = 'hidden';
+                        });
+                    });
+                    
+                    // Admin login form
+                    adminLoginForm.addEventListener('submit', (e) => {
+                        e.preventDefault();
+                        
+                        const email = document.getElementById('adminEmail').value;
+                        const password = document.getElementById('adminPassword').value;
+                        
+                        // Simple validation (in real app, use Firebase Auth)
+                        if (email === 'admin@onlinecoursesfree.com' && password === 'msarim7898') {
+                            adminLoginModal.classList.add('hidden');
+                            adminPanelModal.classList.remove('hidden');
                         } else {
-                            console.error("Firestore not initialized.");
-                            showCustomModal("Error: Database not ready. Please try again.", 'alert');
+                            document.getElementById('adminLoginError').classList.remove('hidden');
+                            document.getElementById('adminLoginError').textContent = 'Invalid email or password';
                         }
-                    } catch (e) {
-                        console.error("Error updating live link:", e);
-                        showCustomModal(`Failed to update live link: ${e.message}`, 'alert');
-                    }
-                } else {
-                    showCustomModal("Please enter a valid YouTube Live URL.", 'alert');
+                    });
+                    
+                    // Close admin panel
+                    closeAdminPanelBtn.addEventListener('click', () => {
+                        adminPanelModal.classList.add('hidden');
+                        document.body.style.overflow = 'auto';
+                    });
+                    
+                    // Visit YouTube channel
+                    visitChannelBtn.addEventListener('click', () => {
+                        window.open('https://youtube.com/@msarim2122', '_blank');
+                    });
+                    
+                    // Floating support button
+                    floatingSupportBtn.addEventListener('click', () => {
+                        window.open('https://wa.me/923326942269', '_blank');
+                    });
                 }
+                
+                // Initialize the app
+                initUI();
             });
-
-            // Add new course (to Firestore)
-            addCourseBtn.addEventListener('click', async () => {
-                const title = courseTitleInput.value.trim();
-                const description = courseDescriptionInput.value.trim();
-                const link = courseLinkInput.value.trim();
-
-                if (title && description && link) {
-                    try {
-                        if (db) { // Ensure db is initialized
-                            const newCourseRef = await addDoc(collection(db, coursesCollectionPath), {
-                                title,
-                                description,
-                                link,
-                                createdAt: new Date() // Optional: add a timestamp
-                            });
-                            console.log("New course added to Firestore with ID:", newCourseRef.id);
-                            courseTitleInput.value = '';
-                            courseDescriptionInput.value = '';
-                            courseLinkInput.value = '';
-                            showCustomModal("New course added successfully!", 'alert');
-                        } else {
-                            console.error("Firestore not initialized.");
-                            showCustomModal("Error: Database not ready. Please try again.", 'alert');
-                        }
-                    } catch (e) {
-                        console.error("Error adding course:", e);
-                        showCustomModal(`Failed to add course: ${e.message}`, 'alert');
-                    }
-                } else {
-                    showCustomModal("Please fill in all course fields (Title, Description, Link).", 'alert');
-                }
-            });
-        });
-    </script>
-</body>
+        </script>
+    </body>
 </html>
