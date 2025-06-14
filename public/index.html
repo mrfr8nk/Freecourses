@@ -75,6 +75,7 @@
     </script>
     
     <style>
+    	
         :root {
             --header-height: 80px;
         }
@@ -302,6 +303,7 @@
         .status-rejected {
             @apply bg-gray-100 text-gray-800;
         }
+        
     </style>
 </head>
 <body class="min-h-screen flex flex-col">
@@ -1601,6 +1603,8 @@
         const subscriberFilter = document.getElementById('subscriberFilter');
         const exportSubscribersBtn = document.getElementById('exportSubscribersBtn');
         const liveSessionForm = document.getElementById('liveSessionForm');
+        
+        
 
         // Subscription buttons
         const subscribeButtons = [
@@ -1732,65 +1736,80 @@
             
             // Admin login form
             adminLoginForm.addEventListener('submit', async (e) => {
-                e.preventDefault();
-                
-                const email = document.getElementById('adminEmail').value;
-                const password = document.getElementById('adminPassword').value;
-                
-                try {
-                    loadingOverlay.classList.remove('hidden');
-                    const userCredential = await signInWithEmailAndPassword(auth, email, password);
-                    currentUser = userCredential.user;
-                    isAdmin = true;
-                    
-                    // Hide login modal
-                    adminLoginModal.classList.add('hidden');
-                    loadingOverlay.classList.add('hidden');
-                    
-                    // Update UI for admin
-                    document.getElementById('loginBtn').textContent = 'Logout';
-                    document.getElementById('mobileLoginBtn').textContent = 'Logout';
-                    showToast('Admin login successful', 'success');
-                } catch (error) {
-                    console.error('Login error:', error);
-                    loadingOverlay.classList.add('hidden');
-                    document.getElementById('adminLoginError').classList.remove('hidden');
-                    document.getElementById('adminLoginError').textContent = 'Invalid email or password';
-                }
-            });
-
+  e.preventDefault();
+  
+  const email = document.getElementById('adminEmail').value;
+  const password = document.getElementById('adminPassword').value;
+  
+  try {
+    loadingOverlay.classList.remove('hidden');
+    const userCredential = await signInWithEmailAndPassword(auth, email, password);
+    
+    // Close login modal
+    adminLoginModal.classList.add('hidden');
+    document.body.style.overflow = 'auto';
+    
+    // Open admin panel
+    adminPanelModal.classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+    
+    // Force show dashboard tab
+    document.querySelector('[data-tab="dashboard"]').click();
+    loadAdminDashboard();
+    
+    // Update UI
+    document.getElementById('loginBtn').textContent = 'Logout';
+    document.getElementById('mobileLoginBtn').textContent = 'Logout';
+    
+    loadingOverlay.classList.add('hidden');
+  } catch (error) {
+    console.error('Login error:', error);
+    loadingOverlay.classList.add('hidden');
+    document.getElementById('adminLoginError').textContent = 'Invalid email or password';
+    document.getElementById('adminLoginError').classList.remove('hidden');
+  }
+});
             // Admin panel close button
             closeAdminPanelBtn.addEventListener('click', () => {
                 adminPanelModal.classList.add('hidden');
                 document.body.style.overflow = 'auto';
             });
 
-            // Admin tab switching
-            adminTabBtns.forEach(btn => {
-                btn.addEventListener('click', () => {
-                    const tabId = btn.dataset.tab;
-                    
-                    // Update active tab button
-                    adminTabBtns.forEach(b => b.classList.remove('bg-primary-100', 'text-primary-700'));
-                    btn.classList.add('bg-primary-100', 'text-primary-700');
-                    
-                    // Show selected tab content
-                    adminTabContents.forEach(content => content.classList.add('hidden'));
-                    document.getElementById(`${tabId}-tab`).classList.remove('hidden');
-                    
-                    // Load data for the tab if needed
-                    if (tabId === 'subscribers') {
-                        loadSubscribers();
-                    } else if (tabId === 'courses') {
-                        loadAdminCourses();
-                    } else if (tabId === 'live') {
-                        loadLiveSettings();
-                    } else if (tabId === 'dashboard') {
-                        loadAdminDashboard();
-                    }
-                });
-            });
-
+            // FIXED VERSION - Proper event delegation for admin tabs
+document.addEventListener('click', (e) => {
+  if (e.target.closest('.admin-tab-btn')) {
+    const tabBtn = e.target.closest('.admin-tab-btn');
+    const tabId = tabBtn.dataset.tab;
+    
+    // Update active tab style
+    document.querySelectorAll('.admin-tab-btn').forEach(btn => {
+      btn.classList.remove('bg-primary-100', 'text-primary-700');
+    });
+    tabBtn.classList.add('bg-primary-100', 'text-primary-700');
+    
+    // Switch tab content
+    document.querySelectorAll('.admin-tab-content').forEach(content => {
+      content.classList.add('hidden');
+    });
+    document.getElementById(`${tabId}-tab`).classList.remove('hidden');
+    
+    // Load data for the tab
+    switch(tabId) {
+      case 'dashboard':
+        loadAdminDashboard();
+        break;
+      case 'subscribers':
+        loadSubscribers();
+        break;
+      case 'courses':
+        loadAdminCourses();
+        break;
+      case 'live':
+        loadLiveSettings();
+        break;
+    }
+  }
+});
             // Add course button
             addCourseBtn.addEventListener('click', () => {
                 addCourseModal.classList.remove('hidden');
